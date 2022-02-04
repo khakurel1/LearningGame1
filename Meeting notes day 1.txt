@@ -1,4 +1,4 @@
-﻿Meeting 1 (in class, Thurs, Feb 3)
+Meeting 1 (in class, Thurs, Feb 3)
 
 
 Meeting times:
@@ -21,3 +21,5 @@ Questions for students:
 
 
 We seem to be collaborating well without a set leader for now. We'll see if we need one later. Alex will be the recorder. Asmod will be the Git Manager because he has previous experience with Git. Alex will take the lead on prioritizing teaching the class if that's something the teacher wants us to focus on.
+
+xx change by alex
