@@ -9,17 +9,22 @@ Tues 9:30
 Asmod used javascript & .io stuff to code a web-based game in software development in less than a month with a team of 3 people. So the coding should be very doable, and we'll have time to learn. We could learn bootstrap to make the interface nicer (it's a template).
 
 
-Questions for teacher: 
-* All we know so far is that we want to ask them questions about what they want. Do you want us to run the entire class? If so, what should we be teaching them? Do you want us to teach the class actual coding or just the process of software design? Testing software and giving feedback won't take an entire class period. 
+Questions for teacher:
+* All we know so far is that we want to ask them questions about what they want. Do you want us to run the entire class? If so, what should we be teaching them? Do you want us to teach the class actual coding or just the process of software design? Testing software and giving feedback won't take an entire class period.
 * Is there anything in particular you want the game itself to help students learn?
 
 
-Questions for students: 
-* What do you guys want to see in a game? What kind of games do you like? Sports? 
-* What do you want this game to help you learn? 
+Questions for students:
+* What do you guys want to see in a game? What kind of games do you like? Sports?
+* What do you want this game to help you learn?
 * Things it could teach: vocab words, spelling, science simulation
 
 
 We seem to be collaborating well without a set leader for now. We'll see if we need one later. Alex will be the recorder. Asmod will be the Git Manager because he has previous experience with Git. Alex will take the lead on prioritizing teaching the class if that's something the teacher wants us to focus on.
 
-xx change by alex
+
+
+We seem to be collaborating well without a set leader for now. We'll see if we need one later. Alex will be the recorder. Asmod will be the Git Manager because he has previous experience with Git. Alex will take the lead on prioritizing teaching the class if that's something the teacher wants us to focus on.
+
+Asmod changes "Hello 12:37"
+Saurav changes "12:38 PM"
