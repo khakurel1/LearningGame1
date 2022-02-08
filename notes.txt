@@ -21,3 +21,42 @@ Questions for students:
 
 
 We seem to be collaborating well without a set leader for now. We'll see if we need one later. Alex will be the recorder. Asmod will be the Git Manager because he has previous experience with Git. Alex will take the lead on prioritizing teaching the class if that's something the teacher wants us to focus on.
+
+
+
+Day 2:
+School:
+
+ask them to draw on the board and talk through what they think a user would do in the program
+
+leaderboard with top person total, of week, and of day
+
+Saurav made a couple quick website games. The code is very short. So this will be doable in a week or two.
+
+Talk to teachers and ask if there's something the students are struggling to learn, something they need to practice more.
+
+Topics:
+- math, pattern recognition
+- music
+- science
+- grammar
+
+Questions & hangman-style response
+Animation will probably be too difficult
+Shoots and ladders game with questions
+
+Asynchronous or versus
+
+What kind of thing we're trying to make:
+- take something that is boring to learn and make it fun. ask what they don't like learning
+- similar to a cool math game in terms of complexity
+
+
+Plan for class:
+- Ask them what they find the most boring or miserable to learn/practice 
+- Ask what kinds of games they like. Have them look around coolmath.com
+- Hopefully we’ll narrow in on one or two ideas and be able to start planning the layout and other details
+
+
+Saurav & Alex will meet outside Wiggin Street Coffee at 2:07 so we get to the school around 2:15. That will give us 20 minutes with the class.
+
