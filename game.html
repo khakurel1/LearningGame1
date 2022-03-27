@@ -62,12 +62,11 @@
    <body>
 
      <div id="container">
-  <div id="alertbox2" class="hide">
-    <p id="msg2">Message<p>
-    <input id="btnClose2" type="button" value="OK"/>
-  </div>
-</div>
-<input id="btnOpen2" type="button" value="Windows Alert!"/>
+       <div id="alertbox2" class="hide">
+         <p id="msg2">Question: What is your name?<p>
+         <input id="btnClose2" type="button" value="OK"/>
+       </div>
+     </div>
 
       <ul id="planet">
          <li>SPACE</li>
@@ -982,38 +981,32 @@
          this.mycoins = this.mycoins + 1;
 
          var temp = window.alert;
-          window.alert = showAlert;
+         window.alert = showAlert;
 
-          var d = document,
-            box2 = d.getElementById("alertbox2"),
-            msg2 = d.getElementById("msg2");
+         var d = document,
+           box2 = d.getElementById("alertbox2"),
+           msg2 = d.getElementById("msg2");
 
+         d.getElementById("btnClose2").addEventListener("click", hideAlert2 );
 
-          // d.getElementById("btnOpen2").addEventListener("click", showAlert2 );
-          d.getElementById("btnClose2").addEventListener("click", hideAlert2 );
+         let a=4;
 
-          let a=4;
+         function showAlert(msgText) {
+         box.classList.remove("hide");
+         }
 
-          function showAlert(msgText) {
+         function showAlert2(msgText) {
+          box2.classList.remove("hide");
+         }
 
-          box.classList.remove("hide");
-          }
+         function hideAlert2(msgText) {
+           box2.classList.add("hide");
+         }
 
+         function doJSStyling() {
+         }
 
-
-          function showAlert2(msgText) {
-
-           box2.classList.remove("hide");
-          }
-
-          function hideAlert2(msgText) {
-
-            box2.classList.add("hide");
-          }
-
-          function doJSStyling() {
-
-          }
+        
 
 
          // I declared the variable this.mycoins and this.questionCount above after the class declaration.
