@@ -8,7 +8,56 @@
       <meta name="mobile-web-app-capable" content="yes">
       <link rel="apple-touch-icon" sizes="192x192">
       <link rel="icon" sizes="192x192">
-      <style type="text/css">body,canvas,html,li,ul{width:100%;height:100%}#ctrl,body,canvas,h1,h2,h3,h4,html,li,table,td,th,tr,ul{margin:0;padding:0}body,html{overflow:hidden;background-color:#000;color:#fff;font:normal 14px Arial,Helvetica,sans-serif;text-align:center}#ctrl,#game,#hud,#load,#planet{position:absolute;top:0;left:0;right:0;bottom:0}#load{background-image:linear-gradient(#003,#033 50%,#000 0);opacity:1}#load.hide{display:none}#hud,#load{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between}#hud div,#load div{width:100%}#hud div:first-child,#load div:first-child{align-self:flex-start}#hud div:last-child,#load div:last-child{align-self:flex-end}ul{list-style:none}ul>li{position:absolute;letter-spacing:3px;line-height:60px;font-size:24px;font-weight:700}ul>li.hide{opacity:0;transition:opacity 1s}h1{font-size:24px;letter-spacing:5px;line-height:80px}h2{line-height:30px}h2,h3{font-size:18px}h3{height:40px}h4{line-height:20px;font-size:14px}h4.title{line-height:25px;font-size:20px}h4.done{text-decoration:line-through}p{margin:10px 0;padding:0}table{min-width:250px;margin:5px auto 0}th{text-align:left;font-weight:400}td{text-align:right}.total{font-weight:700;font-size:18px;line-height:25px}#quest{padding:10px 0;background:rgba(0,0,0,.7);opacity:1;visibility:hidden}#ctrl{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:center}#ctrl div{flex:1 0 100%}#keys.hide,#touch.hide{display:none}i{position:absolute;display:block;top:12px;width:32px;line-height:32px;font-size:24px;font-style:normal;border-radius:50%;cursor:pointer;color:#999}#sfx{right:10px}#sfx:before{content:"♫"}#sfx.no:before{content:"♪";text-decoration:line-through}#sfx.sfx:before{content:"♪"}#fs{left:10px}#fs:before{content:"☐"}a{display:inline-block;width:50px;line-height:48px;font-weight:700;color:#000;text-shadow:1px 1px 1px #fff;background-image:linear-gradient(#fff,#ccc);border:2px solid #333;border-radius:25px;padding:0 20px;margin:20px 5px;cursor:pointer}a.disabled{color:#999}.cyan{color:#2ff}.pink{color:#f2f}.red{color:#f22}.end #ctrl,.play #ctrl,.play a{visibility:hidden}.end #quest,.play #quest{visibility:visible}.play #quest{opacity:0;transition:opacity 1s;transition-delay:2.5s}.play table{display:none}*{-webkit-tap-highlight-color:rgba(0,0,0,0);-webkit-touch-callout:none;user-select:none}</style>
+      <style type="text/css">body,canvas,html,li,ul{width:100%;height:100%}#ctrl,body,canvas,h1,h2,h3,h4,html,li,table,td,th,tr,ul{margin:0;padding:0}body,html{overflow:hidden;background-color:#000;color:#fff;font:normal 14px Arial,Helvetica,sans-serif;text-align:center}#ctrl,#game,#hud,#load,#planet{position:absolute;top:0;left:0;right:0;bottom:0}#load{background-image:linear-gradient(#003,#033 50%,#000 0);opacity:1}#load.hide{display:none}#hud,#load{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between}#hud div,#load div{width:100%}#hud div:first-child,#load div:first-child{align-self:flex-start}#hud div:last-child,#load div:last-child{align-self:flex-end}ul{list-style:none}ul>li{position:absolute;letter-spacing:3px;line-height:60px;font-size:24px;font-weight:700}ul>li.hide{opacity:0;transition:opacity 1s}h1{font-size:24px;letter-spacing:5px;line-height:80px}h2{line-height:30px}h2,h3{font-size:18px}h3{height:40px}h4{line-height:20px;font-size:14px}h4.title{line-height:25px;font-size:20px}h4.done{text-decoration:line-through}p{margin:10px 0;padding:0}table{min-width:250px;margin:5px auto 0}th{text-align:left;font-weight:400}td{text-align:right}.total{font-weight:700;font-size:18px;line-height:25px}#quest{padding:10px 0;background:rgba(0,0,0,.7);opacity:1;visibility:hidden}#ctrl{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:center}#ctrl div{flex:1 0 100%}#keys.hide,#touch.hide{display:none}i{position:absolute;display:block;top:12px;width:32px;line-height:32px;font-size:24px;font-style:normal;border-radius:50%;cursor:pointer;color:#999}#sfx{right:10px}#sfx:before{content:"♫"}#sfx.no:before{content:"♪";text-decoration:line-through}#sfx.sfx:before{content:"♪"}#fs{left:10px}#fs:before{content:"☐"}a{display:inline-block;width:50px;line-height:48px;font-weight:700;color:#000;text-shadow:1px 1px 1px #fff;background-image:linear-gradient(#fff,#ccc);border:2px solid #333;border-radius:25px;padding:0 20px;margin:20px 5px;cursor:pointer}a.disabled{color:#999}.cyan{color:#2ff}.pink{color:#f2f}.red{color:#f22}.end #ctrl,.play #ctrl,.play a{visibility:hidden}.end #quest,.play #quest{visibility:visible}.play #quest{opacity:0;transition:opacity 1s;transition-delay:2.5s}.play table{display:none}*{-webkit-tap-highlight-color:rgba(0,0,0,0);-webkit-touch-callout:none;user-select:none}
+
+
+        #alertbox {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: green;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  .hide {
+    display: none;
+  }
+  #container {
+    display: block;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    width: 0%;
+  }
+
+  #alertbox2 {
+    background-color: #F0F0F0;
+    border-radius: 5px;
+    border: solid 1px black;
+    width: 300px;
+    position: absolute;
+    left: -150px;
+    padding: 10px;
+    padding-bottom: 50px;
+    text-align: left;
+  }
+
+  #alertbox2:after {
+    margin: 5px;
+  }
+
+  #btnClose2 {
+    position: absolute;
+    right: 20px;
+    padding: 5px 35px;
+  }
+
+
+
+      </style>
    </head>
    <body>
       <ul id="planet">
@@ -922,8 +971,45 @@
                  coin() {
          let wordLength = this.selectWord();
          this.mycoins = this.mycoins + 1;
+
+         var temp = window.alert;
+          window.alert = showAlert;
+
+          var d = document,
+            box2 = d.getElementById("alertbox2"),
+            msg2 = d.getElementById("msg2");
+
+
+          // d.getElementById("btnOpen2").addEventListener("click", showAlert2 );
+          d.getElementById("btnClose2").addEventListener("click", hideAlert2 );
+
+          let a=4;
+
+          function showAlert(msgText) {
+
+          box.classList.remove("hide");
+          }
+
+
+
+          function showAlert2(msgText) {
+
+           box2.classList.remove("hide");
+          }
+
+          function hideAlert2(msgText) {
+
+            box2.classList.add("hide");
+          }
+
+          function doJSStyling() {
+
+          }
+
+
          // I declared the variable this.mycoins and this.questionCount above after the class declaration.
          if (this.mycoins % 5 == 0){
+          this.showAlert2();
          	let person = window.prompt("Please enter your name", "Harry Potter");
          	this.questionCount=this.questionCount + 1;
          	if (this.questionCount == wordLength){
