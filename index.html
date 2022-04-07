@@ -19,28 +19,28 @@
 	height:40px;
     font-size:30px;
 	background-color:blue;
-	position:absolute; 
-	left: 20px; 
+	position:absolute;
+	left: 20px;
 	bottom: 30px;
   }
-h2{line-height:30px}h2,h3{font-size:18px}h3{height:40px}h4{line-height:20px;font-size:14px}h4.title{line-height:25px;font-size:20px}h4.done{text-decoration:line-through}p{margin:10px 0;padding:0}table{min-width:250px;margin:5px auto 0}th{text-align:left;font-weight:400}td{text-align:right}.total{font-weight:700;font-size:18px;line-height:25px}#quest{padding:10px 0;background:rgba(0,0,0,.7);opacity:1;visibility:hidden}#ctrl{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:center}#ctrl div{flex:1 0 100%}#keys.hide,#touch.hide{display:none}i{position:absolute;display:block;top:12px;width:32px;line-height:32px;font-size:24px;font-style:normal;border-radius:50%;cursor:pointer;color:#999}#sfx{right:10px}#sfx:before{content:"♫"}#sfx.no:before{content:"♪";text-decoration:line-through}#sfx.sfx:before{content:"♪"}#fs{left:10px}#fs:before{content:"☐"}a{display:inline-block;width:50px;line-height:48px;font-weight:700;color:#000;text-shadow:1px 1px 1px #fff;background-image:linear-gradient(#fff,#ccc);border:2px solid #333;border-radius:25px;padding:0 20px;margin:20px 5px;cursor:pointer}a.disabled{color:#999}.cyan{color:#2ff}.pink{color:#f2f}.red{color:#f22}.end #ctrl,.play #ctrl,.play a{visibility:hidden}.end #quest,.play #quest{visibility:visible}.play #quest{opacity:0;transition:opacity 1s;transition-delay:2.5s}.play table{display:none}*{-webkit-tap-highlight-color:rgba(0,0,0,0);-webkit-touch-callout:none;user-select:none}</style></head><body><ul id="planet"><li>SPACE</li><li style="background-image:radial-gradient(circle at 50% 100%, #632, #964 30%, #c96 40%, #000 40%)">PLUTO</li><li style="background-image:radial-gradient(circle at 50% 100%, #013, #025 48%, #046 58%, #013 59%, #000 61%)">NEPTUNE</li><li style="background-image:radial-gradient(circle at 50% 100%, #133, #255 50%, #466 60%, #133 61%, #000 63%)">URANUS</li><li style="background-image:radial-gradient(circle at 50% 100%, #320, #651 50%, #973 60%, #320 61%, #000 63%, #000 73%, #333 75%, #333 88%, #000 90%)">SATURN</li><li style="background-image:radial-gradient(circle at 50% 100%, #420, #641 60%, #852 70%, #420 71%, #000 75%)">JUPITER</li><li style="background-image:radial-gradient(circle at 50% 100%, #300, #510 35%, #630 45%, #310 46%, #000 48%)">MARS</li><li style="background-image:radial-gradient(circle at 50% 100%, #222, #555 30%, #666 40%, #000 40%)">MOON</li></ul><canvas id="game" width="192" height="192"></canvas><div id="hud"><div></div><div id="quest"><h4 class="title"></h4><h4></h4><h4></h4><table><tr><th>Distance travelled</th><td></td></tr><tr><th>Tokens collected</th><td></td></tr><tr><th>Big tokens collected</th><td></td></tr><tr><th>Asteroids destroyed</th><td></td></tr><tr><th>Places visited</th><td></td></tr><tr><th>Mission completed</th><td></td></tr><tr><th class="total">TOTAL</th><td class="total"></td></tr></table></div><div><a id="ok">OK</a></div></div>  
+h2{line-height:30px}h2,h3{font-size:18px}h3{height:40px}h4{line-height:20px;font-size:14px}h4.title{line-height:25px;font-size:20px}h4.done{text-decoration:line-through}p{margin:10px 0;padding:0}table{min-width:250px;margin:5px auto 0}th{text-align:left;font-weight:400}td{text-align:right}.total{font-weight:700;font-size:18px;line-height:25px}#quest{padding:10px 0;background:rgba(0,0,0,.7);opacity:1;visibility:hidden}#ctrl{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:center}#ctrl div{flex:1 0 100%}#keys.hide,#touch.hide{display:none}i{position:absolute;display:block;top:12px;width:32px;line-height:32px;font-size:24px;font-style:normal;border-radius:50%;cursor:pointer;color:#999}#sfx{right:10px}#sfx:before{content:"♫"}#sfx.no:before{content:"♪";text-decoration:line-through}#sfx.sfx:before{content:"♪"}#fs{left:10px}#fs:before{content:"☐"}a{display:inline-block;width:50px;line-height:48px;font-weight:700;color:#000;text-shadow:1px 1px 1px #fff;background-image:linear-gradient(#fff,#ccc);border:2px solid #333;border-radius:25px;padding:0 20px;margin:20px 5px;cursor:pointer}a.disabled{color:#999}.cyan{color:#2ff}.pink{color:#f2f}.red{color:#f22}.end #ctrl,.play #ctrl,.play a{visibility:hidden}.end #quest,.play #quest{visibility:visible}.play #quest{opacity:0;transition:opacity 1s;transition-delay:2.5s}.play table{display:none}*{-webkit-tap-highlight-color:rgba(0,0,0,0);-webkit-touch-callout:none;user-select:none}</style></head><body><ul id="planet"><li>SPACE</li><li style="background-image:radial-gradient(circle at 50% 100%, #632, #964 30%, #c96 40%, #000 40%)">PLUTO</li><li style="background-image:radial-gradient(circle at 50% 100%, #013, #025 48%, #046 58%, #013 59%, #000 61%)">NEPTUNE</li><li style="background-image:radial-gradient(circle at 50% 100%, #133, #255 50%, #466 60%, #133 61%, #000 63%)">URANUS</li><li style="background-image:radial-gradient(circle at 50% 100%, #320, #651 50%, #973 60%, #320 61%, #000 63%, #000 73%, #333 75%, #333 88%, #000 90%)">SATURN</li><li style="background-image:radial-gradient(circle at 50% 100%, #420, #641 60%, #852 70%, #420 71%, #000 75%)">JUPITER</li><li style="background-image:radial-gradient(circle at 50% 100%, #300, #510 35%, #630 45%, #310 46%, #000 48%)">MARS</li><li style="background-image:radial-gradient(circle at 50% 100%, #222, #555 30%, #666 40%, #000 40%)">MOON</li></ul><canvas id="game" width="192" height="192"></canvas><div id="hud"><div></div><div id="quest"><h4 class="title"></h4><h4></h4><h4></h4><table><tr><th>Distance travelled</th><td></td></tr><tr><th>Correct answers</th><td></td></tr><tr><th>hangman score</th><td></td></tr><tr><th>Tokens collected</th><td></td></tr><tr><th>Big tokens collected</th><td></td></tr><tr><th>Asteroids destroyed</th><td></td></tr><tr><th>Places visited</th><td></td></tr><tr><th>Mission completed</th><td></td></tr><tr><th class="total">TOTAL</th><td class="total"></td></tr></table></div><div><a id="ok">OK</a></div></div>
 
 <div id = "COINSCORE"> </div>
 <div id="ctrl"><h3></h3><div><h3></h3><a id="prev">&lt;</a><a id="play"></a>
-	
-	
+
+
 	<a id="next">&gt;</a></div></div><div><i id="fs" title="Fullscreen"></i> <i id="sfx" title="Audio"></i></div><div id="load"><div><h1>SPACECRAFT</h1></div><div><p id="keys"><b>JUMP</b> - <b>UP</b> arrow key<br><b>SHRINK</b> - <b>DOWN</b> arrow key<br><b>MOVE</b> - <b>LEFT / RIGHT</b> arrow keys<br><b>BOOST</b> - <b>SPACE</b> key</p><p id="touch"><b>JUMP</b> - Swipe <b>UP</b><br><b>SHRINK</b> - Swipe <b>DOWN</b><br><b>MOVE</b> - Swipe <b>LEFT / RIGHT</b><br><b>BOOST</b> - <b>TAP</b></p><p><b class="pink">BIG TOKENS</b> help you collect small ones.<br>Use <b>SHRINK</b> to go through <b class="red">SPACE JUNK</b>.<br>Use <b>BOOST</b> to destroy <b class="cyan">ASTEROIDS</b>.</p></div><div><a id="start">START</a><script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
 
 
 	<script type = "text/javascript">
-	
 
-	
+
+
 
 
 
 	! function(t) {
-	
+
     var e = {};
 
 	var xclaim=2;
@@ -91,9 +91,11 @@ h2{line-height:30px}h2,h3{font-size:18px}h3{height:40px}h4{line-height:20px;font
 }, function(t, e) {
     t.exports = "precision mediump float;uniform vec4 uColor;uniform vec3 uLight;varying vec4 vPos;varying vec3 vNorm;void main(){float a;vec3 b;b=normalize((uLight-vPos.xyz));vec3 c;c=normalize(vNorm);vec3 d;d=normalize(-(vPos.xyz));vec3 e;vec3 f;f=-(b);e=(f-(2.0*(dot(c,f)*c)));a=0.0;if((uColor.w>0.0)){a=pow(max(dot(e,d),0.0),uColor.w);}mediump vec4 g;g.w=1.0;g.xyz=(uColor.xyz*((vec3(0.2,0.2,0.2)+(vec3(0.8,0.8,0.8)*a))+(vec3(0.8,0.8,0.8)*max(dot(c,b),0.0))));gl_FragColor=g;}"
 }, function(t, e, s) {}, function(t, e, s) {
-	
+
 	var questionBank={"What is 2+2?":"4", "What is the 4th planet in the solar system?":"mars"};
-	var myAnswer="";  
+	var myAnswer="";
+  var qsscore = 0;
+  var hmscore = 0;
 	var hangmanWord="";  // PARTIAL GUESS WORD
 	var correctAnswers=0;    // NUMBER OF CORRECT ANSWERS
 	var randomlySelectedWord="";   // GUESS WORD INITIALLY SELECTED BY THE COMPUTER
@@ -570,7 +572,7 @@ h2{line-height:30px}h2,h3{font-size:18px}h3{height:40px}h4{line-height:20px;font
                 t.explode = 7, i.trigger("exp", t)
             }
         }
-		
+
 		done(){
 		  this.explode=1;
 		}
@@ -662,7 +664,7 @@ h2{line-height:30px}h2,h3{font-size:18px}h3{height:40px}h4{line-height:20px;font
                     name: "CASSINI",
                     price: 2500
                 }], this.tasklist = document.getElementsByTagName("H4"), this.scores = document.getElementsByTagName("TD"), this.stats = {}, this.sfxBtn = B("#sfx"), this.volume = .3, this.hero(), this.bind(), this.init()
-				
+
             }
             level() {
                 return this.storage.level + 1
@@ -742,11 +744,13 @@ h2{line-height:30px}h2,h3{font-size:18px}h3{height:40px}h4{line-height:20px;font
                         this.next()
                 }
             }
-			
-			
+
+
             play() {
 				document.getElementById("COINSCORE").classList.remove("displayCoinCount");
-				var myAnswer="";  
+				var myAnswer="";
+        hmscore=0;
+        qsscore=0;
 				hangmanWord="";  // PARTIAL GUESS WORD
 				correctAnswers=0;    // NUMBER OF CORRECT ANSWERS
 				randomlySelectedWord="";   // GUESS WORD INITIALLY SELECTED BY THE COMPUTER
@@ -790,8 +794,8 @@ h2{line-height:30px}h2,h3{font-size:18px}h3{height:40px}h4{line-height:20px;font
                     o = this.stats.coin || 0,
                     h = Math.round(t.distance),
                     c = this.mission(!0) ? 1 : 0;
-                i.item(0).textContent = h + "", i.item(1).textContent = "₮ " + o + " x 10", i.item(2).textContent = a + " x 25", i.item(3).textContent = r + " x 50", i.item(4).textContent = n + " x 100", i.item(5).textContent = c + " x 500", h += 500 * c + 100 * n + 50 * r + 25 * a + 10 * o, i.item(6).textContent = h + "", e < h ? (s.textContent = "NEW HIGH SCORE", this.storage.score = h) : s.textContent = "SCORE", this.storage.token += o, this.store(), this.active = !0, this.body.className = "end"
-			
+                i.item(0).textContent = h + "", i.item(1).textContent = qsscore/100 + " x 100", i.item(2).textContent = hmscore, i.item(3).textContent = "₮ " + o + " x 10", i.item(4).textContent = a + " x 25", i.item(5).textContent = r + " x 50", i.item(6).textContent = n + " x 100", i.item(7).textContent = c + " x 500", h += 500 * c + 100 * n + 50 * r + 25 * a + 10 * o + hmscore + qsscore, i.item(8).textContent = h + "", e < h ? (s.textContent = "NEW HIGH SCORE", this.storage.score = h) : s.textContent = "SCORE", this.storage.token += o, this.store(), this.active = !0, this.body.className = "end"
+
             }
             show() {
                 this.shop = !0, this.body.className = ""
@@ -892,25 +896,26 @@ h2{line-height:30px}h2,h3{font-size:18px}h3{height:40px}h4{line-height:20px;font
             dash() {
                 this.scaleTime = 40, i.trigger("move", this)
             }
-			
+
 			selectWord(){
-				
+
 				randomlySelectedWord="abc"; // GUESS WORD INITIALLY SELECTED BY THE COMPUTER
 				let length = randomlySelectedWord.length;
 				return length;
 			}
-			
+
 			myFunction(){
 				continueGame=1;
 
 			}
-			
+
 			checkAnswer(){
 				continueGame=0;
 				var enteredAnswer = document.getElementById("answer").value;
 				var newstring = enteredAnswer.trim().toLowerCase()
-				
+
 				if (newstring==myAnswer){
+
 					Swal.fire({
 					  icon: 'success',
 					  title: 'Bingo!!!',
@@ -919,7 +924,8 @@ h2{line-height:30px}h2,h3{font-size:18px}h3{height:40px}h4{line-height:20px;font
 					  showConfirmButton: false,
 					  allowOutsideClick: false
 					});
-					correctAnswers = correctAnswers + 1; // NUMBER OF CORRECT ANSWERS THE USER GETS 
+					correctAnswers = correctAnswers + 1; // NUMBER OF CORRECT ANSWERS THE USER GETS
+          qsscore = qsscore + 100;
 					document.getElementById('answerIsCorrect').addEventListener("click", function(){continueGame=1;});
 				}
 				else{
@@ -934,73 +940,94 @@ h2{line-height:30px}h2,h3{font-size:18px}h3{height:40px}h4{line-height:20px;font
 					document.getElementById('answerIsIncorrect').addEventListener("click", function(){continueGame=1;});
 				}
 			}
-			
-			
+
+
 			checkGuess(){
 				// hangmanWord and randomlySelectedWord similarity
-					
+
 					var enteredGuess = document.getElementById("hangmanAnswer").value;
 					if (enteredGuess.toLowerCase() != randomlySelectedWord.toLowerCase()){
 						incorrectGuesses = incorrectGuesses + 1;
-		
+
 					}
-					
+
 					else if (enteredGuess.toLowerCase() == randomlySelectedWord.toLowerCase()){
+            hmscore=200;
 						guessIsCorrect = true;
-						
+
 					}
 					if (guessIsCorrect == true){
 						document.getElementById("CORRECT").innerHTML = "VOILA !!! ";
 						document.getElementById("tryGuess2").innerHTML = "<button type='submit' class ='decorateButton' id='FINALWINDOW' onclick='swal.close()' style = 'background-color: #4CAF50;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;'><b>RESUME GAME!</b></button>";
 						document.getElementById("FINALWINDOW").addEventListener("click",function(){continueGame=1;});
 					}
-					
+
 					if (incorrectGuesses == 1 && guessIsCorrect == false){
 						document.getElementById("hint1").innerHTML = "hint 1";
 					}
+          else if (incorrectGuesses == 1 && guessIsCorrect == true){
+            hmscore = 150;
+          }
+
 					if (incorrectGuesses==2 && guessIsCorrect == false) {
 						document.getElementById("hint1").innerHTML = "hint 1";
 						document.getElementById("hint2").innerHTML = "hint 2";
 					}
+
+          else if (incorrectGuesses == 2 && guessIsCorrect == true){
+            hmscore = 100;
+          }
 					if (incorrectGuesses==3 && guessIsCorrect == false){
+
 						document.getElementById("hint1").innerHTML = "hint 1";
 						document.getElementById("hint2").innerHTML = "hint 2";
 						document.getElementById("hint3").innerHTML = "hint 3";
+
 					}
+          else if (incorrectGuesses == 3 && guessIsCorrect == true){
+            hmscore = 50;
+          }
+
 					if (incorrectGuesses>3 && guessIsCorrect == false){
+            hmscore=0;
 						document.getElementById("revealAnswer").innerHTML = "The correct answer is " + "<b>" + String(randomlySelectedWord) + "</b>";
 						document.getElementById("tryGuess2").innerHTML = "<button type='submit' class ='decorateButton' id='FINALWINDOW' onclick='swal.close()' style = 'background-color: #4CAF50;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;'><b>RESUME GAME!</b></button>";
+
 						document.getElementById("FINALWINDOW").addEventListener("click",function(){continueGame=1;});
 					}
-					
-				
-			
+
+
+          console.log("hangman score",hmscore);
+          console.log("question score", qsscore);
+
+
+
 			}
-			
-						
-			
-            coin() {	
-				
+
+
+
+            coin() {
+
 				this.mycoins = this.mycoins + 1;
 				document.getElementById("COINSCORE").classList.add("displayCoinCount");
 				document.getElementById("COINSCORE").innerHTML="<b> Coins: </b>" + String(this.mycoins);
 				let wordLength = this.selectWord();
-				
-				// I declared the variable this.mycoins and this.questionCount above after the class declaration. 
-				
+
+				// I declared the variable this.mycoins and this.questionCount above after the class declaration.
+
 				if (this.questionCount<wordLength){
-				
-				
+
+
 					if (this.mycoins % 2 == 0){
 						var randomNumber = Math.floor(Math.random()*2) + 1;
-						randomNumber = randomNumber - 1;					
+						randomNumber = randomNumber - 1;
 						var myQuestion = (Object.keys(questionBank)[randomNumber]);
 						myAnswer = questionBank[myQuestion];
 						this.questionCount=this.questionCount + 1;
 						continueGame=0;
 						Swal.fire({
 						  title: '<strong><u> Time for a question!</u></strong>',
-						  
+
 						  html: "<p id = 'question'> </p>" + "<input placeholder='Try your luck here' class='swal2-input' id='answer'>" + "<button type='submit' class ='decorateButton' id='checkanswer' onclick='swal.close()' style = 'background-color: #4CAF50;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;'>SUBMIT</button>",
 						  showConfirmButton: false,
 						  allowOutsideClick: false
@@ -1013,7 +1040,7 @@ h2{line-height:30px}h2,h3{font-size:18px}h3{height:40px}h4{line-height:20px;font
 					this.questionCount = wordLength + 1;  // TO STOP ASKING QUESTIONS
 					continueGame=0;
 					var randomPosition = 0;
-					var loopCount = 0; 
+					var loopCount = 0;
 					var inArray = false;
 					for (let i = 0; i < wordLength; i++) {
 						hangmanWord=hangmanWord + "-";
@@ -1028,54 +1055,54 @@ h2{line-height:30px}h2,h3{font-size:18px}h3{height:40px}h4{line-height:20px;font
 							loopCount = loopCount + 1;
 						}
 					}
-					
+
 					for (let i = 0 ; i< wordLength ; i ++ ){
 						hangmanWord = hangmanWord.replace("-", "  _  ");
 					}
-					
+
 					Swal.fire({
 					  title: '<strong><u> Time for Hangman! </u></strong>',
-					  
+
 					  html: "<b><p id = 'question'> </p></b>" + "<input placeholder='Enter your guess word here' class='swal2-input' id='hangmanAnswer'>" + "<p id='tryGuess2'><button type='submit' id='tryGuess' class ='decorateButton' style = 'background-color: #4CAF50;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;'>TRYING MY LUCK...</button></p>" + "<p id='hint1'></p><p id='hint2'></p><p id='hint3'></p><p id='revealAnswer'></p><p id ='CORRECT'></p><p id ='addEndButton'></p>",
 					  showConfirmButton: false,
 					  allowOutsideClick: false
 					});
-					
+
 					document.getElementById("question").innerHTML=hangmanWord;
-					
-					
-				
+
+
+
 					//while (incorrectGuesses<3 && guessIsCorrect==false)
 					//{
-					
+
 					document.getElementById("tryGuess").addEventListener('click',this.checkGuess);
 						//incorrectGuesses = incorrectGuesses * 1;
 					//}
-					
-					
+
+
 				}
 				i.trigger("coin", this);
 			}
-			
-            
-			
-			
-			
-			
+
+
+
+
+
+
             cancel() {
                 this.x = Math.round(this.transform.translate.x)
             }
-			
+
             update() {
-				
+
                 let t = this.transform.translate,
                     e = this.scale,
                     s = this.transform.rotate,
                     i = (this.speedTime ? .13 : .08) + Math.min(this.distance / 15e3, .04);
                 this.speed.z += ((this.active ? i : 0) - this.speed.z) / 20, this.speedTime -= this.speedTime > 0 ? 1 : 0, this.color = this.magnetTime > 100 || this.magnetTime % 20 > 10 ? D.PINK : D.WHITE, this.scale += ((this.scaleTime ? .5 : .7) - this.scale) / 5, this.scaleTime -= this.scaleTime > 0 ? 1 : 0, this.magnetTime -= this.magnetTime > 0 ? 1 : 0, this.tokenCollider.scale = this.magnetTime ? this.magnet : this.transform.scale, this.stroke += (this.explode - this.stroke) / 25, this.active = t.y > -10 && this.stroke < 6, this.active && !this.stroke && (this.acc -= this.acc > -.012 ? .003 : 0, s.z = 90 + 25 * (t.x - this.x), s.y = (s.y + 100 * this.speed.z) % 360, this.speed.y += this.acc, this.speed.y < -.25 && (this.speed.y = -.25), t.x += (this.x - t.x) / 7, t.y += this.speed.y, t.z -= t.z / 30, this.transform.scale.set(e, e, e))
-				
+
             }
-			
+
             preview() {
                 let t = this.transform.rotate;
                 t.y = (t.y + 1) % 360, t.z = (t.z + .7) % 360
@@ -1134,7 +1161,7 @@ h2{line-height:30px}h2,h3{font-size:18px}h3{height:40px}h4{line-height:20px;font
                 return s < 0 ? s + e : s >= e ? s - e : s
             }
             update() {
-				
+
 				if (continueGame==1){
                 this.hero.update();
                 let t = !1,
@@ -1167,9 +1194,9 @@ h2{line-height:30px}h2,h3{font-size:18px}h3{height:40px}h4{line-height:20px;font
             constructor(t, e = 7, s = 150) {
                 this.config = t.split("|"), this.length = e, this.flag=1,this.steps = s
             }
-			
-			
-			
+
+
+
             init() {
                 this.row = [1, 1, 1], this.count = 10, this.data = [], this.step = 0, this.min = 0, this.update()
             }
@@ -1179,7 +1206,7 @@ h2{line-height:30px}h2,h3{font-size:18px}h3{height:40px}h4{line-height:20px;font
                 return t < e ? t : e - 1
             }
             update() {
-				
+
 			    if (continueGame==1){
 					let t = !1;
 					if (++this.step > this.steps && (t = !0, this.step = 0, this.min + this.length < this.config.length - 1 && this.min++), --this.count > 0) return t;
