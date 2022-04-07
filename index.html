@@ -14,8 +14,20 @@
 
 <style type="text/css">body,canvas,html,li,ul{width:100%;height:100%}#ctrl,body,canvas,h1,h2,h3,h4,html,li,table,td,th,tr,ul{margin:0;padding:0}body,html{overflow:hidden;background-color:#000;color:#fff;font:normal 14px Arial,Helvetica,sans-serif;text-align:center}#ctrl,#game,#hud,#load,#planet{position:absolute;top:0;left:0;right:0;bottom:0}#load{background-image:linear-gradient(#003,#033 50%,#000 0);opacity:1}#load.hide{display:none}#hud,#load{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between}#hud div,#load div{width:100%}#hud div:first-child,#load div:first-child{align-self:flex-start}#hud div:last-child,#load div:last-child{align-self:flex-end}ul{list-style:none}ul>li{position:absolute;letter-spacing:3px;line-height:60px;font-size:24px;font-weight:700}ul>li.hide{opacity:0;transition:opacity 1s}h1{font-size:24px;letter-spacing:5px;line-height:80px}
 
+  .displayCoinCount {
+    width:250px;
+	height:40px;
+    font-size:30px;
+	background-color:blue;
+	position:absolute; 
+	left: 20px; 
+	bottom: 30px;
+  }
+h2{line-height:30px}h2,h3{font-size:18px}h3{height:40px}h4{line-height:20px;font-size:14px}h4.title{line-height:25px;font-size:20px}h4.done{text-decoration:line-through}p{margin:10px 0;padding:0}table{min-width:250px;margin:5px auto 0}th{text-align:left;font-weight:400}td{text-align:right}.total{font-weight:700;font-size:18px;line-height:25px}#quest{padding:10px 0;background:rgba(0,0,0,.7);opacity:1;visibility:hidden}#ctrl{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:center}#ctrl div{flex:1 0 100%}#keys.hide,#touch.hide{display:none}i{position:absolute;display:block;top:12px;width:32px;line-height:32px;font-size:24px;font-style:normal;border-radius:50%;cursor:pointer;color:#999}#sfx{right:10px}#sfx:before{content:"♫"}#sfx.no:before{content:"♪";text-decoration:line-through}#sfx.sfx:before{content:"♪"}#fs{left:10px}#fs:before{content:"☐"}a{display:inline-block;width:50px;line-height:48px;font-weight:700;color:#000;text-shadow:1px 1px 1px #fff;background-image:linear-gradient(#fff,#ccc);border:2px solid #333;border-radius:25px;padding:0 20px;margin:20px 5px;cursor:pointer}a.disabled{color:#999}.cyan{color:#2ff}.pink{color:#f2f}.red{color:#f22}.end #ctrl,.play #ctrl,.play a{visibility:hidden}.end #quest,.play #quest{visibility:visible}.play #quest{opacity:0;transition:opacity 1s;transition-delay:2.5s}.play table{display:none}*{-webkit-tap-highlight-color:rgba(0,0,0,0);-webkit-touch-callout:none;user-select:none}</style></head><body><ul id="planet"><li>SPACE</li><li style="background-image:radial-gradient(circle at 50% 100%, #632, #964 30%, #c96 40%, #000 40%)">PLUTO</li><li style="background-image:radial-gradient(circle at 50% 100%, #013, #025 48%, #046 58%, #013 59%, #000 61%)">NEPTUNE</li><li style="background-image:radial-gradient(circle at 50% 100%, #133, #255 50%, #466 60%, #133 61%, #000 63%)">URANUS</li><li style="background-image:radial-gradient(circle at 50% 100%, #320, #651 50%, #973 60%, #320 61%, #000 63%, #000 73%, #333 75%, #333 88%, #000 90%)">SATURN</li><li style="background-image:radial-gradient(circle at 50% 100%, #420, #641 60%, #852 70%, #420 71%, #000 75%)">JUPITER</li><li style="background-image:radial-gradient(circle at 50% 100%, #300, #510 35%, #630 45%, #310 46%, #000 48%)">MARS</li><li style="background-image:radial-gradient(circle at 50% 100%, #222, #555 30%, #666 40%, #000 40%)">MOON</li></ul><canvas id="game" width="192" height="192"></canvas><div id="hud"><div></div><div id="quest"><h4 class="title"></h4><h4></h4><h4></h4><table><tr><th>Distance travelled</th><td></td></tr><tr><th>Tokens collected</th><td></td></tr><tr><th>Big tokens collected</th><td></td></tr><tr><th>Asteroids destroyed</th><td></td></tr><tr><th>Places visited</th><td></td></tr><tr><th>Mission completed</th><td></td></tr><tr><th class="total">TOTAL</th><td class="total"></td></tr></table></div><div><a id="ok">OK</a></div></div>  
 
-h2{line-height:30px}h2,h3{font-size:18px}h3{height:40px}h4{line-height:20px;font-size:14px}h4.title{line-height:25px;font-size:20px}h4.done{text-decoration:line-through}p{margin:10px 0;padding:0}table{min-width:250px;margin:5px auto 0}th{text-align:left;font-weight:400}td{text-align:right}.total{font-weight:700;font-size:18px;line-height:25px}#quest{padding:10px 0;background:rgba(0,0,0,.7);opacity:1;visibility:hidden}#ctrl{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:center}#ctrl div{flex:1 0 100%}#keys.hide,#touch.hide{display:none}i{position:absolute;display:block;top:12px;width:32px;line-height:32px;font-size:24px;font-style:normal;border-radius:50%;cursor:pointer;color:#999}#sfx{right:10px}#sfx:before{content:"♫"}#sfx.no:before{content:"♪";text-decoration:line-through}#sfx.sfx:before{content:"♪"}#fs{left:10px}#fs:before{content:"☐"}a{display:inline-block;width:50px;line-height:48px;font-weight:700;color:#000;text-shadow:1px 1px 1px #fff;background-image:linear-gradient(#fff,#ccc);border:2px solid #333;border-radius:25px;padding:0 20px;margin:20px 5px;cursor:pointer}a.disabled{color:#999}.cyan{color:#2ff}.pink{color:#f2f}.red{color:#f22}.end #ctrl,.play #ctrl,.play a{visibility:hidden}.end #quest,.play #quest{visibility:visible}.play #quest{opacity:0;transition:opacity 1s;transition-delay:2.5s}.play table{display:none}*{-webkit-tap-highlight-color:rgba(0,0,0,0);-webkit-touch-callout:none;user-select:none}</style></head><body><ul id="planet"><li>SPACE</li><li style="background-image:radial-gradient(circle at 50% 100%, #632, #964 30%, #c96 40%, #000 40%)">PLUTO</li><li style="background-image:radial-gradient(circle at 50% 100%, #013, #025 48%, #046 58%, #013 59%, #000 61%)">NEPTUNE</li><li style="background-image:radial-gradient(circle at 50% 100%, #133, #255 50%, #466 60%, #133 61%, #000 63%)">URANUS</li><li style="background-image:radial-gradient(circle at 50% 100%, #320, #651 50%, #973 60%, #320 61%, #000 63%, #000 73%, #333 75%, #333 88%, #000 90%)">SATURN</li><li style="background-image:radial-gradient(circle at 50% 100%, #420, #641 60%, #852 70%, #420 71%, #000 75%)">JUPITER</li><li style="background-image:radial-gradient(circle at 50% 100%, #300, #510 35%, #630 45%, #310 46%, #000 48%)">MARS</li><li style="background-image:radial-gradient(circle at 50% 100%, #222, #555 30%, #666 40%, #000 40%)">MOON</li></ul><canvas id="game" width="192" height="192"></canvas><div id="hud"><div></div><div id="quest"><h4 class="title"></h4><h4></h4><h4></h4><table><tr><th>Distance travelled</th><td></td></tr><tr><th>Tokens collected</th><td></td></tr><tr><th>Big tokens collected</th><td></td></tr><tr><th>Asteroids destroyed</th><td></td></tr><tr><th>Places visited</th><td></td></tr><tr><th>Mission completed</th><td></td></tr><tr><th class="total">TOTAL</th><td class="total"></td></tr></table></div><div><a id="ok">OK</a></div></div><div id="ctrl"><h3></h3><div><h3></h3><a id="prev">&lt;</a><a id="play"></a>
+<div id = "COINSCORE"> </div>
+<div id="ctrl"><h3></h3><div><h3></h3><a id="prev">&lt;</a><a id="play"></a>
+	
 	
 	<a id="next">&gt;</a></div></div><div><i id="fs" title="Fullscreen"></i> <i id="sfx" title="Audio"></i></div><div id="load"><div><h1>SPACECRAFT</h1></div><div><p id="keys"><b>JUMP</b> - <b>UP</b> arrow key<br><b>SHRINK</b> - <b>DOWN</b> arrow key<br><b>MOVE</b> - <b>LEFT / RIGHT</b> arrow keys<br><b>BOOST</b> - <b>SPACE</b> key</p><p id="touch"><b>JUMP</b> - Swipe <b>UP</b><br><b>SHRINK</b> - Swipe <b>DOWN</b><br><b>MOVE</b> - Swipe <b>LEFT / RIGHT</b><br><b>BOOST</b> - <b>TAP</b></p><p><b class="pink">BIG TOKENS</b> help you collect small ones.<br>Use <b>SHRINK</b> to go through <b class="red">SPACE JUNK</b>.<br>Use <b>BOOST</b> to destroy <b class="cyan">ASTEROIDS</b>.</p></div><div><a id="start">START</a><script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
 
@@ -733,6 +745,7 @@ h2{line-height:30px}h2,h3{font-size:18px}h3{height:40px}h4{line-height:20px;font
 			
 			
             play() {
+				document.getElementById("COINSCORE").classList.remove("displayCoinCount");
 				var myAnswer="";  
 				hangmanWord="";  // PARTIAL GUESS WORD
 				correctAnswers=0;    // NUMBER OF CORRECT ANSWERS
@@ -966,9 +979,13 @@ h2{line-height:30px}h2,h3{font-size:18px}h3{height:40px}h4{line-height:20px;font
 			
 						
 			
-            coin() {						
-				let wordLength = this.selectWord();
+            coin() {	
+				
 				this.mycoins = this.mycoins + 1;
+				document.getElementById("COINSCORE").classList.add("displayCoinCount");
+				document.getElementById("COINSCORE").innerHTML="<b> Coins: </b>" + String(this.mycoins);
+				let wordLength = this.selectWord();
+				
 				// I declared the variable this.mycoins and this.questionCount above after the class declaration. 
 				
 				if (this.questionCount<wordLength){
