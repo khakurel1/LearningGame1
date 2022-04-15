@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 session_start();
 
@@ -25,7 +25,7 @@ session_start();
 				{
 
 					$user_data = mysqli_fetch_assoc($result);
-					
+
 					if($user_data['password'] === $password)
 					{
 
@@ -35,7 +35,7 @@ session_start();
 					}
 				}
 			}
-			
+
 			echo "wrong username or password!";
 		}else
 		{
