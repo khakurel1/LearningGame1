@@ -1,44 +1,73 @@
+<!-- Index -->
+
 <?php
 session_start();
 
-    //include("connection.php");
-    include("functions.php");
-    $dbhost = "localhost";
-    $dbuser = "root";
-    $dbpass = "";
-    $dbname = "login_sample_db";
-    $con = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);
-    $user_data = check_login($con);
-    $tori = $user_data['user_id'];
-   $weeklyQuery = "select * from weeklyleaderboard where id = $tori limit 1";
-   $monthlyQuery = "select * from monthlyleaderboard where id = $tori limit 1";
-   $alltimeQuery = "select * from alltimeleaderboard where id = $tori limit 1";
-    $convertQuery = mysqli_query($con, $weeklyQuery);
-    $weeklyResult = mysqli_fetch_assoc($convertQuery);
+  //include("connection.php");
+  include("functions.php");
+  $dbhost = "localhost";
+  $dbuser = "felleson1";
+  $dbpass = "S218277";
+  $dbname = "Game1";
+  $con = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);
+  $user_data = check_login($con);
+  $tori = $user_data['user_id'];
+  $weeklyQuery = "select * from WeekLeaderboard where id = $tori limit 1";
+  $monthlyQuery = "select * from MonthLeaderboard where id = $tori limit 1";
+  $alltimeQuery = "select * from AllTimeLeaderboard where id = $tori limit 1";
+  $dailyQuery = "select * from DayLeaderboard where id = $tori limit 1";
 
-    $convertmonthQuery = mysqli_query($con, $monthlyQuery);
-    $monthlyResult = mysqli_fetch_assoc($convertmonthQuery);
+  $convertdayQuery = mysqli_query($con, $dailyQuery);
+  $convertweekQuery = mysqli_query($con, $weeklyQuery);
+  $convertmonthQuery = mysqli_query($con, $monthlyQuery);
+  $convertallQuery = mysqli_query($con, $alltimeQuery);
 
-    $convertallQuery = mysqli_query($con, $alltimeQuery);
-    $alltimeResult = mysqli_fetch_assoc($convertallQuery);
+  $coinsforQ = 10;
 
+  $avcolor1 = '1'; //must be between 0 & 1 (inclusive, i think)
+  $avcolor2 = '1';
+  $avcolor3 = '1';
 ?>
 
-<!DOCTYPE html><html lang="en"><head><title>SPACECRAFT</title><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><link rel="apple-touch-icon" sizes="192x192"><link rel="icon" sizes="192x192">
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <title>SPACECRAFT</title>
+  <meta charset="UTF-8">
+  meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="apple-touch-icon" sizes="192x192">
+  <link rel="icon" sizes="192x192">
 
 <!-- jQuery -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <!-- SweetAlert2 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
+  <!-- FontAwesome -->
+  <script src="https://kit.fontawesome.com/d9a4adb85e.js" crossorigin="anonymous"></script>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.1.9/sweetalert2.min.css" integrity="sha512-cyIcYOviYhF0bHIhzXWJQ/7xnaBuIIOecYoPZBgJHQKFPo+TOBA+BY1EnTpmM8yKDU4ZdI3UGccNGCEUdfbBqw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.1.9/sweetalert2.all.min.js" integrity="sha512-IZ95TbsPTDl3eT5GwqTJH/14xZ2feLEGJRbII6bRKtE/HC6x3N4cHye7yyikadgAsuiddCY2+6gMntpVHL1gHw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
 
-<style type="text/css">body,canvas,html,li,ul{width:100%;height:100%}#ctrl,body,canvas,h1,h2,h3,h4,html,li,table,td,th,tr,ul{margin:0;padding:0}body,html{overflow:hidden;background-color:#000;color:#fff;font:normal 14px Arial,Helvetica,sans-serif;text-align:center}#ctrl,#game,#hud,#load,#planet{position:absolute;top:0;left:0;right:0;bottom:0}#load{background-image:linear-gradient(#003,#033 50%,#000 0);opacity:1}#load.hide{display:none}#hud,#load{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between}#hud div,#load div{width:100%}#hud div:first-child,#load div:first-child{align-self:flex-start}#hud div:last-child,#load div:last-child{align-self:flex-end}ul{list-style:none}ul>li{position:absolute;letter-spacing:3px;line-height:60px;font-size:24px;font-weight:700}ul>li.hide{opacity:0;transition:opacity 1s}h1{font-size:24px;letter-spacing:5px;line-height:80px}
+<style type="text/css">body,canvas,html,li,ul{width:100%;height:100%}#ctrl,body,canvas,h1,h2,h3,h4,html,li,table,td,th,tr,ul{margin:0;padding:0}body,
+html{
+  overflow:hidden;
+  background-color:#000;
+  color:#fff;
+  font:normal 14px Arial,Helvetica,sans-serif;
+  text-align:center}
+  #ctrl,#game,#hud,#load,#planet{position:absolute;top:0;left:0;right:0;bottom:0}
+  #load{background-image:linear-gradient(#003,#033 50%,#000 0);opacity:1}#load.hide{display:none}#hud,
+  #load{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between}#hud div,
+  #load div{width:100%}#hud div:first-child,
+  #load div:first-child{align-self:flex-start}#hud div:last-child,
+  #load div:last-child{align-self:flex-end}ul{list-style:none}ul>li{position:absolute;letter-spacing:3px;line-height:60px;font-size:24px;font-weight:700}ul>
+  li.hide{opacity:0;transition:opacity 1s}h1{font-size:24px;letter-spacing:5px;line-height:80px}
 
   .displayCoinCount {
     width:250px;
@@ -48,28 +77,125 @@ session_start();
     position:absolute;
     left: 20px;
     bottom: 30px;
+
+    .fa-expand {
+      color: white;
+    }
+
+    .my-swal {
+      background: rgba(255,255,255,.8)!important;;
+    }
   }
-h2{line-height:30px}h2,h3{font-size:18px}h3{height:40px}h4{line-height:20px;font-size:14px}h4.title{line-height:25px;font-size:20px}h4.done{text-decoration:line-through}p{margin:10px 0;padding:0}table{min-width:250px;margin:5px auto 0}th{text-align:left;font-weight:400}td{text-align:right}.total{font-weight:700;font-size:18px;line-height:25px}#quest{padding:10px 0;background:rgba(0,0,0,.7);opacity:1;visibility:hidden}#ctrl{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:center}#ctrl div{flex:1 0 100%}#keys.hide,#touch.hide{display:none}i{position:absolute;display:block;top:12px;width:32px;line-height:32px;font-size:24px;font-style:normal;border-radius:50%;cursor:pointer;color:#999}#sfx{right:10px}#sfx:before{content:"♫"}#sfx.no:before{content:"♪";text-decoration:line-through}#sfx.sfx:before{content:"♪"}#fs{left:10px}#fs:before{content:"☐"}a{display:inline-block;width:50px;line-height:48px;font-weight:700;color:#000;text-shadow:1px 1px 1px #fff;background-image:linear-gradient(#fff,#ccc);border:2px solid #333;border-radius:25px;padding:0 20px;margin:20px 5px;cursor:pointer}a.disabled{color:#999}.cyan{color:#2ff}.pink{color:#f2f}.red{color:#f22}.end #ctrl,.play #ctrl,.play a{visibility:hidden}.end #quest,.play #quest{visibility:visible}.play #quest{opacity:0;transition:opacity 1s;transition-delay:2.5s}.play table{display:none}*{-webkit-tap-highlight-color:rgba(0,0,0,0);-webkit-touch-callout:none;user-select:none}</style></head><body><ul id="planet"><li>SPACE</li><li style="background-image:radial-gradient(circle at 50% 100%, #632, #964 30%, #c96 40%, #000 40%)">PLUTO</li><li style="background-image:radial-gradient(circle at 50% 100%, #013, #025 48%, #046 58%, #013 59%, #000 61%)">NEPTUNE</li><li style="background-image:radial-gradient(circle at 50% 100%, #133, #255 50%, #466 60%, #133 61%, #000 63%)">URANUS</li><li style="background-image:radial-gradient(circle at 50% 100%, #320, #651 50%, #973 60%, #320 61%, #000 63%, #000 73%, #333 75%, #333 88%, #000 90%)">SATURN</li><li style="background-image:radial-gradient(circle at 50% 100%, #420, #641 60%, #852 70%, #420 71%, #000 75%)">JUPITER</li><li style="background-image:radial-gradient(circle at 50% 100%, #300, #510 35%, #630 45%, #310 46%, #000 48%)">MARS</li><li style="background-image:radial-gradient(circle at 50% 100%, #222, #555 30%, #666 40%, #000 40%)">MOON</li></ul><canvas id="game" width="192" height="192"></canvas><div id="hud"><div></div><div id="quest"><h4 class="title"></h4><h4></h4><h4></h4><table><tr><th>Distance travelled</th><td></td></tr><tr><th>Correct answers</th><td></td></tr><tr><th>hangman score</th><td></td></tr><tr><th>Tokens collected</th><td></td></tr><tr><th>Big tokens collected</th><td></td></tr><tr><th>Asteroids destroyed</th><td></td></tr><tr><th>Places visited</th><td></td></tr><tr><th>Mission completed</th><td></td></tr><tr><th class="total">TOTAL</th><td class="total"></td></tr></table></div><div><a id="ok">OK</a></div></div>
+h2{line-height:30px}h2,
+h3{font-size:18px}
+h3{height:40px}
+h4{line-height:20px;font-size:14px}h4.title{line-height:25px;font-size:20px}h4.done{text-decoration:line-through}
+p{margin:10px 0;padding:0}
+table{min-width:250px;margin:5px auto 0}
+th{text-align:left;font-weight:400}
+td{text-align:right}.total{font-weight:700;font-size:18px;line-height:25px}#quest{padding:10px 0;background:rgba(0,0,0,.7);opacity:1;visibility:hidden}#ctrl{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:center}#ctrl div{flex:1 0 100%}#keys.hide,#touch.hide{display:none}
+i{position:absolute;display:block;top:12px;width:32px;line-height:32px;font-size:24px;font-style:normal;border-radius:50%;cursor:pointer;color:#999}
+#sfx{right:10px}#sfx:before{content:"♪";text-decoration:line-through} /* muted icon */
+#sfx.sfx:before{content:"♪";text-decoration:none} /* sfx sounds only icon */
+#sfx.allsounds:before{content:"♫";text-decoration:none} /* all sound icon */
 
+/* <!-- #fs{left:10px} --><!-- #fs:before{content:"☐"} --> */
+  a{display:inline-block;width:100px;line-height:48px;font-weight:700;color:#000;text-shadow:1px 1px 1px #fff;
+  background-image:linear-gradient(#fff,#ccc);border:2px solid #333;border-radius:25px;padding:0 20px;margin:20px 5px;cursor:pointer;text-decoration: none} /* play and menu buttons on startup page */
+  a.disabled{color:#999}.cyan{color:#2ff}.pink{color:#f2f}.red{color:#f22}.end #ctrl,.play #ctrl,.play a{visibility:hidden}.end #quest,.play #quest{visibility:visible}.play #quest{opacity:0;transition:opacity 1s;transition-delay:2.5s}.play table{display:none}*{-webkit-tap-highlight-color:rgba(0,0,0,0);-webkit-touch-callout:none;user-select:none}</style></head>
+<body>
 
-<div id = "COINSCORE"> </div>
-<div id="ctrl"><h3></h3><div><h3></h3><a id="prev">&lt;</a><a id="play"></a>
+  <ul id="planet">
+  <li>SPACE</li>
+  <li style="background-image:radial-gradient(circle at 50% 100%, #632, #964 30%, #c96 40%, #000 40%)">PLUTO</li>
+  <li style="background-image:radial-gradient(circle at 50% 100%, #013, #025 48%, #046 58%, #013 59%, #000 61%)">NEPTUNE</li>
+  <li style="background-image:radial-gradient(circle at 50% 100%, #133, #255 50%, #466 60%, #133 61%, #000 63%)">URANUS</li>
+  <li style="background-image:radial-gradient(circle at 50% 100%, #320, #651 50%, #973 60%, #320 61%, #000 63%, #000 73%, #333 75%, #333 88%, #000 90%)">SATURN</li>
+  <li style="background-image:radial-gradient(circle at 50% 100%, #420, #641 60%, #852 70%, #420 71%, #000 75%)">
+  JUPITER</li>
+  <li style="background-image:radial-gradient(circle at 50% 100%, #300, #510 35%, #630 45%, #310 46%, #000 48%)">MARS</li>
+  <li style="background-image:radial-gradient(circle at 50% 100%, #222, #555 30%, #666 40%, #000 40%)">MOON</li></ul><canvas id="game" width="192" height="192"></canvas><div id="hud">
+  <div></div>
+  <div id="quest"><h4 class="title"></h4>
+      <h4></h4><h4></h4>
+      <table>
+        <tr><th>Distance traveled</th><td></td></tr>
+        <tr><th>Correct question answers</th><td></td></tr><tr>
+        <th>Word guessing score</th><td></td></tr>
+        <tr><th>Tokens collected</th><td></td></tr>
+        <tr><th>Big tokens collected</th><td></td></tr>
+        <tr><th>Asteroids destroyed</th><td></td></tr>
+        <tr><th>Places visited</th><td></td></tr>
+        <tr><th>Mission completed</th><td></td></tr>
+        <tr><th class="total">TOTAL</th><td class="total"></td></tr>
+      </table>
+  </div>
+  <div><a id="ok">OK</a></div>
+  </div>
 
+  <div id = "COINSCORE"> </div>
+  <div id="ctrl"><h3></h3>
+    <div><h3></h3>
+      <a id="prev">&lt;</a>
+      <a id="play"></a>
+      <a id="next">&gt;</a>
+    </div>
+  </div>
 
-    <a id="next">&gt;</a></div></div><div><i id="fs" title="Fullscreen"></i> <i id="sfx" title="Audio"></i></div><div id="load"><div><h1>SPACECRAFT</h1></div><div><p id="keys"><b>JUMP</b> - <b>UP</b> arrow key<br><b>SHRINK</b> - <b>DOWN</b> arrow key<br><b>MOVE</b> - <b>LEFT / RIGHT</b> arrow keys<br><b>BOOST</b> - <b>SPACE</b> key</p><p id="touch"><b>JUMP</b> - Swipe <b>UP</b><br><b>SHRINK</b> - Swipe <b>DOWN</b><br><b>MOVE</b> - Swipe <b>LEFT / RIGHT</b><br><b>BOOST</b> - <b>TAP</b></p><p><b class="pink">BIG TOKENS</b> help you collect small ones.<br>Use <b>SHRINK</b> to go through <b class="red">SPACE JUNK</b>.<br>Use <b>BOOST</b> to destroy <b class="cyan">ASTEROIDS</b>.</p></div><div><a id="start">START</a><script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
+    <div>
+      <!-- <i class="fa-solid fa-expand" id="fs" title="Fullscreen"></i> -->
+      <i id="sfx" title="Audio"></i></div>
+    <div id="load">
+      <div><h1>SPACECRAFT</h1></div>
+      <div>
+        <p id="keys">
+          <b>MOVE</b> = <b>LEFT / RIGHT</b> arrow keys<br>
+          <b>JUMP</b> = <b>UP</b> arrow key<br>
+          <b>SHRINK</b> = <b>DOWN</b> arrow key<br>
+          <b>BOOST</b> = <b>SPACE</b> key
+        </p>
+        <p id="touch"><b>JUMP</b> = Swipe <b>UP</b><br>
+          <b>MOVE</b> = Swipe <b>LEFT / RIGHT</b><br>
+          <b>SHRINK</b> = Swipe <b>DOWN</b><br>
+          <b>BOOST</b> = <b>TAP</b>
+        </p>
+        <p>
+          <b class="pink">BIG TOKENS</b> help you collect small ones.<br>
+          Use <b>SHRINK</b> to go through <b class="red">SPACE JUNK</b>.<br>
+          Use <b>BOOST</b> to destroy <b class="cyan">ASTEROIDS</b>.
+        </p>
+      </div>
+      <div><a id="start">START</a></div><div><a id="mainmenu" href="./menu.php">MAIN MENU</a></div>
 
- <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script type = "text/javascript">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type = "text/javascript">
 
-function ajaxCall(finalscore){
+function ajaxCall(thisroundscore){
+    /* fetch current leaderboard scores for this user*/
+    <?php $dailyResult = mysqli_fetch_assoc($convertdayQuery);
+    $weeklyResult = mysqli_fetch_assoc($convertweekQuery);
+    $monthlyResult = mysqli_fetch_assoc($convertmonthQuery);
+    $alltimeResult = mysqli_fetch_assoc($convertallQuery);
+    ?>
+
     var thisusername="<?php echo $user_data['user_name']; ?>";
     var thisuserid = "<?php echo $user_data['user_id'];?>";
-    var temp ="<?php echo $weeklyResult['score'];?>";
+    var oldday ="<?php echo $dailyResult['Score'];?>";
+    var oldweek ="<?php echo $weeklyResult['Score'];?>";
+    var oldmonth ="<?php echo $monthlyResult['Score'];?>";
+    var oldalltime ="<?php echo $alltimeResult['Score'];?>";
+    console.log("old day ",oldday);
+    console.log("old week ",oldweek);
+    console.log("old alltime ",oldalltime);
+    console.log("thisroundscore",thisroundscore);
 
-
-    console.log(temp);
-    finalscore = parseInt(temp) + finalscore;
-    console.log(finalscore);
+    dayfinalscore = parseInt(oldday) + thisroundscore;
+    weekfinalscore = parseInt(oldweek) + thisroundscore;
+    monthfinalscore = parseInt(oldmonth) + thisroundscore;
+    alltimefinalscore = parseInt(oldalltime) + thisroundscore;
+    console.log("weekfinalscore",weekfinalscore);
+    console.log("alltimefinalscore",alltimefinalscore);
      $.ajax(
                 {
                         // Our sample url to make request
@@ -77,7 +203,7 @@ function ajaxCall(finalscore){
                         'ajaxcall.php',
                         // Type of Request
                         type: "post",
-                        data : {username:thisusername, userid: thisuserid, userscore:finalscore},
+                        data : {username:thisusername, userid: thisuserid, dayuserscore:dayfinalscore,weekuserscore:weekfinalscore,monthuserscore:monthfinalscore,alltimeuserscore:alltimefinalscore},
                         error: function (error) {
                             console.log(`Error ${error}`);
                         }
@@ -135,12 +261,70 @@ function ajaxCall(finalscore){
 }, function(t, e) {
     t.exports = "precision mediump float;uniform vec4 uColor;uniform vec3 uLight;varying vec4 vPos;varying vec3 vNorm;void main(){float a;vec3 b;b=normalize((uLight-vPos.xyz));vec3 c;c=normalize(vNorm);vec3 d;d=normalize(-(vPos.xyz));vec3 e;vec3 f;f=-(b);e=(f-(2.0*(dot(c,f)*c)));a=0.0;if((uColor.w>0.0)){a=pow(max(dot(e,d),0.0),uColor.w);}mediump vec4 g;g.w=1.0;g.xyz=(uColor.xyz*((vec3(0.2,0.2,0.2)+(vec3(0.8,0.8,0.8)*a))+(vec3(0.8,0.8,0.8)*max(dot(c,b),0.0))));gl_FragColor=g;}"
 }, function(t, e, s) {}, function(t, e, s) {
-    console.log("hey");
-    var questionBank={"What is 2+2?":"4", "What is the 4th planet in the solar system?":"mars"};
-    var myAnswer="";
+    /* console.log("hey"); */
+    var questionBank = {
+      "What is 2+2?" : ["4",0],
+      "One night while camping, a student observes that the moon and stars appear to move across the sky. Which statement describes why the moon and stars appear to change position? <br>A. Earth rotates <br>B. Earth is tilted <br>C. Earth orbits the sun <br>D. Earth moves away from the sun":["a",1],
+      "James bought 5/4 pounds of rice. Which decimal is equivalent to the amount of rice that he bought?":["1.25",0],
+      "What is the smallest planet in the solar system?":["mercury",1],
+      "Ian mowed one fourth of the yard today. This is equivalent to ___ percent.":["25",0],
+      "What celestial body is made of ice and gas?":["comet",0],
+      "5 minutes 34 seconds is ___ seconds":["334",0],
+      "Which motion causes the change from day to night on Earth? <br>A. Earth orbiting the Sun <br>B. Earth rotating on its axis<br>C. the moon orbiting Earth<br>D. the moon rotating on its axis":["b",1],
+      "6 feet 10 inches is ___ inches":["82",0],
+      /* "Fill in the blank: Bees help flowers reproduce by carrying ___ to other flowers.":"pollen",
+      "Mr. Skon has been driving a car at 50 miles per hour for 90 minutes. How many miles has he traveled?":"125",
+      "One night while camping, a student observes that the moon and stars appear to move across the sky. Which statement describes why the moon and stars appear to change position? <br>A. Earth rotates <br>B. Earth is tilted <br>C. Earth orbits the sun <br>D. Earth moves away from the sun":"a",
+      "Which of the following is not a carnivore? <br> A. Cougar<br>B. Snake<br>C. Giraffe<br>D. Lion":"c",
+      "If Earth has an orbital radius of 150 million kilometres, and Mars has an orbital radius of 228 million kilometres, then does Earth have a <b>shorter</b> or <b>longer</b> year than Mars? ":"shorter",
+      "A store only sells 20-pound bags of ice. Over the weekend, the store sells 700 bags of ice, making $2,800. On Monday, the store sells 70 bags of ice.<br>How much (in dollars) does the store make selling ice on Monday? Enter the number in the box.":"280",
+      "What number below is larger than 32.42? <br>A. 32.418 <br>B. 32.399 <br>C. 32.502 <br>D. 31.98":"c",
+      "If a rectangle's area is 3,500 centimeters squared and its length is 100, what is its width? __ cm":"35",
+      "If we divide 51 by 9, the result is between...  <br>A. 3 and 4   <br>B. 4 and 5  <br>C. 5 and 6  <br>D. 6 and 7":"a",
+      "1074 x 64 – 3 = ?":"68733",
+      "If a cube's side length is 4, what is its volume?":"64",
+      "Which number rounds to 3.8?  <br>A. 3.73 <br>B. 3.70 <br>C. 3.87 <br>D. 3.82":"d",
+      "Which of the following organisms operate as decomposers? <br>A. Bacteria <br>B. Plants <br>C. Insects <br>D. Animals":"b",
+      "Which of the following years is furthest back in history? <br>A. 100 A.D. <br>B. 50 B.C.  <br>C. 3 B.C.  <br>D. 18 A.D.":"b",
+      "Which two continents are located completely in the Western Hemisphere? <br>A. Asia and Europe <br>B. South America and Africa <br>C. North America and South America <br>D. Antarctica and Asia":"c" */
+    };
+    var myAnswer = "";
+    var wordBank = {
+      math : ["noun", "subject", "arithmetic"],
+      giraffe : ["noun", "animal", "neck"],
+      escalate: ["verb", "increase rapidly", "shopping mall transportation"],
+      influence: ["verb or noun", "impact", "Win Friends and ____ People"],
+      equivalent: ["noun or adjective", "equal", "mean the same thing"],
+      priority: ["noun", "first things first", "____ mail"],
+      decisive: ["adjective", "no hesitation", "able to choose"],
+      entrepreneur: ["noun", "businessperson", "creates a startup company"],
+      environmental: ["adjective", "relating to nature", "eco-friendly"],
+      migration: ["noun", "move to another place", "The Great ____"],
+      resource: ["noun", "something people use or need", "natural ____"],
+      illustrate: ["verb", "show", "exhibit", "draw"],
+      simulation: ["noun", "digital reproduction", "mock reality"],
+      decompose: ["verb", "plants do this when they die", "fall apart"],
+      interaction: ["noun", "exchange", "correspondence"],
+      community: ["noun", "group of people", "sitcom title"],
+      characteristic: ["noun", "feature", "attribute"],
+      obstacle: ["noun", "challenge", "____ course"],
+      stubborn: ["adjective", "like a donkey", "won’t change their mind"],
+      collaborate: ["verb", "a group does this", "work together"],
+      integrate: ["verb", "combine", "math term"],
+      hilarious: ["adjective", "4 syllables", "funny"],
+      horrific: ["adjective", "ghastly", "terrible, very terrible"],
+      effortless: ["adjective", "easy", "requiring little energy"],
+      abolish: ["verb", "eliminate", "usually used in the context of politics"],
+      provide : ["verb", "give", "supply"],
+      summer: ["noun", "hot", "season"]
+    };
+
   var qsscore = 0;
   var hmscore = 0;
-  var finalscore = 0 ;
+  var dayfinalscore = 0 ;
+  var weekfinalscore = 0 ;
+  var monthfinalscore = 0 ;
+  var alltimefinalscore = 0 ;
     var hangmanWord="";  // PARTIAL GUESS WORD
     var correctAnswers=0;    // NUMBER OF CORRECT ANSWERS
     var randomlySelectedWord="";   // GUESS WORD INITIALLY SELECTED BY THE COMPUTER
@@ -148,7 +332,7 @@ function ajaxCall(finalscore){
     var incorrectGuesses=0;
     var guessIsCorrect = false;
     var closeHangman = false;
-    var cumulativescore=0;
+    /* var cumulativescore=0; */
     "use strict";
     s.r(e);
     s(2);
@@ -175,7 +359,7 @@ function ajaxCall(finalscore){
             coin: "Collect $ token",
             power: "Collect $ big token",
             planet: "Travel to $",
-            fence: "Dodge junks $ time",
+            fence: "Dodge junk $ time",
             enemy: "Dodge asteroids $ time",
             hit: "Destroy $ asteroid"
         },
@@ -681,6 +865,9 @@ function ajaxCall(finalscore){
     _.seed = Math.random();
     const D = {
         WHITE: [1, 1, 1, 10],
+        GREEN: [.3, 1, .5, 10], /*new color test*/
+        ORANGE: [1, 0.588, 0.380, 10], /*new color test*/
+        AVATAR: [<?=$avcolor1?>, <?=$avcolor2?>, <?=$avcolor3?>, 10],
         PINK: [1, .3, 1, 30],
         BLUE: [.3, .3, 1, 30],
         YELLOW: [1, 1, .3, 30],
@@ -709,7 +896,7 @@ function ajaxCall(finalscore){
                 }, {
                     name: "CASSINI",
                     price: 2500
-                }], this.tasklist = document.getElementsByTagName("H4"), this.scores = document.getElementsByTagName("TD"), this.stats = {}, this.sfxBtn = B("#sfx"), this.volume = .3, this.hero(), this.bind(), this.init()
+                }], this.tasklist = document.getElementsByTagName("H4"), this.scores = document.getElementsByTagName("TD"), this.stats = {}, this.sfxBtn = B("#sfx"), /*this.musicvolume = this.musicvolume,*/ this.hero(), this.bind(), this.init()
 
             }
             level() {
@@ -753,8 +940,8 @@ function ajaxCall(finalscore){
                     this.prev()
                 }), L(B("#next"), "click", () => {
                     this.next()
-                }), L(B("#fs"), "click", () => {
-                    document.webkitFullscreenElement ? document.webkitExitFullscreen && document.webkitExitFullscreen() : document.documentElement.webkitRequestFullscreen()
+                // }), L(B("#fs"), "click", () => {
+                //     document.webkitFullscreenElement ? document.webkitExitFullscreen && document.webkitExitFullscreen() : document.documentElement.webkitRequestFullscreen()
                 }), L(this.sfxBtn, "click", () => {
                     let t = this.sfxBtn,
                         e = p.mixer("music"),
@@ -762,14 +949,15 @@ function ajaxCall(finalscore){
                         i = s.context.currentTime;
                     try {
                         switch (t.className) {
-                            case "no":
-                                this.volume = .3, e.gain.setValueAtTime(this.volume, i), s.gain.setValueAtTime(1, i), t.className = "";
+                            default: /* switch from muted/default to sfx sounds (e = on, s=0) only */
+                                this.musicvolume = 0, this.sfxvolume = 0.1, e.gain.setValueAtTime(this.musicvolume, i), s.gain.setValueAtTime(this.sfxvolume, i), t.className = "sfx";
                                 break;
-                            case "sfx":
-                                s.gain.setValueAtTime(0, i), t.className = "no";
+                            case "sfx": /* switch from sfx sounds only to all sounds (e & s = on)*/
+                                this.musicvolume = 0.05, e.gain.setValueAtTime(this.musicvolume, i), s.gain.setValueAtTime(this.sfxvolume, i), t.className = "allsounds";
                                 break;
-                            default:
-                                this.volume = 0, e.gain.setValueAtTime(this.volume, i), t.className = "sfx"
+                            case "allsounds": /* switch from all sounds to muted/default (e & s = 0)*/
+                                this.musicvolume = 0, this.sfxvolume = 0, e.gain.setValueAtTime(this.musicvolume, i), s.gain.setValueAtTime(this.sfxvolume, i), t.className = ""
+                            /* this.volume is the music volume used for the fade music function that is called when you die in the game*/
                         }
                     } catch (t) {}
                 }), i.on("all", t => {
@@ -811,7 +999,11 @@ function ajaxCall(finalscore){
                     e = this.heroes[this.selected],
                     s = this.storage.shop.indexOf(this.selected) < 0,
                     i = t >= e.price;
-                this.info.item(0).textContent = e.name, this.info.item(1).textContent = s ? `₮ ${e.price} / ${t}` : "", this.btn.textContent = s ? "BUY" : "PLAY", this.btn.className = !s || i ? "" : "disabled"
+                this.info.item(0).textContent = e.name,
+                this.info.item(1).textContent = ""/*s ? `₮ ${e.price} / ${t}` : "",*/
+                this.btn.textContent = "PLAY"/*s ? "BUY" : "PLAY",*/
+                this.btn.className = ""/*!s || i ? "" : "disabled"*/
+                /* commented-out code is for avatars that would require money to buy. this change makes every avatar available for "purchase" with no consequences I can see */
             }
             prev() {
                 --this.selected < 0 && (this.selected = this.heroes.length - 1), this.hero()
@@ -844,8 +1036,7 @@ function ajaxCall(finalscore){
                     c = this.mission(!0) ? 1 : 0;
 
                 i.item(0).textContent = h + "", i.item(1).textContent = qsscore/100 + " x 100", i.item(2).textContent = hmscore, i.item(3).textContent = "₮ " + o + " x 10", i.item(4).textContent = a + " x 25", i.item(5).textContent = r + " x 50", i.item(6).textContent = n + " x 100", i.item(7).textContent = c + " x 500", h += 500 * c + 100 * n + 50 * r + 25 * a + 10 * o + hmscore + qsscore, i.item(8).textContent = h + "", e < h ? (s.textContent = "NEW HIGH SCORE", this.storage.score = h) : s.textContent = "SCORE", this.storage.token += o, this.store(), this.active = !0, this.body.className = "end"
-                    finalscore = finalscore + h;
-                ajaxCall(finalscore);
+                ajaxCall(h); /* h = this round's score to be added to the user's cumulative score*/
 
             }
             show() {
@@ -924,7 +1115,7 @@ function ajaxCall(finalscore){
         K = new class extends z {
             init(t = !0) {
                 const e = this.transform;
-                e.translate.set(0, 0, 0), e.rotate.set(0, 0, 90), e.scale.set(1, 1, 1), this.color = D.WHITE, this.active = !0, this.transform = e, this.collider = new v(e), this.tokenCollider = new v(e), this.x = 0, this.rad = .4, this.acc = -.015, this.speed = new x(0, 0, .1), this.speedTime = 0, this.mycoins=0, this.scale = .8, this.scaleTime = 0, this.continue=1, this.magnet = new x(5, 5, 5), this.magnetTime = 0, this.explode = 0, this.questionCount=0, this.correctAnswer="", this.stroke = 0, t && (this.distance = 0)
+                e.translate.set(0, 0, 0), e.rotate.set(0, 0, 90), e.scale.set(1, 1, 1), this.color = D.AVATAR, this.active = !0, this.transform = e, this.collider = new v(e), this.tokenCollider = new v(e), this.x = 0, this.rad = .4, this.acc = -.015, this.speed = new x(0, 0, .1), this.speedTime = 0, this.mycoins=0, this.scale = .8, this.scaleTime = 0, this.continue=1, this.magnet = new x(5, 5, 5), this.magnetTime = 0, this.explode = 0, this.questionCount=0, this.correctAnswer="", this.stroke = 0, t && (this.distance = 0)
             }
             left() {
                 this.x >= 0 && (this.x--, i.trigger("move", this))
@@ -949,8 +1140,15 @@ function ajaxCall(finalscore){
             }
 
             selectWord(){
+                if (randomlySelectedWord==""){
 
-                randomlySelectedWord="abc"; // GUESS WORD INITIALLY SELECTED BY THE COMPUTER
+                /* get a random integer from 0 to length(wordBank)-1 */
+                /*var randomWNumber = Math.floor(Math.random()*(Object.keys(wordBank).length));*/
+                var randomWNumber = 0;
+                /* get quesiton (key) */
+                randomlySelectedWord = Object.keys(wordBank)[randomWNumber];
+                console.log("randomlySelectedWord",randomlySelectedWord);
+                }
                 let length = randomlySelectedWord.length;
                 return length;
             }
@@ -973,11 +1171,12 @@ function ajaxCall(finalscore){
                       text: 'Keep up the good work!',
                       html : "<button type='button' id='answerIsCorrect' class ='decorateButton' onclick='swal.close()' style = 'background-color: #4CAF50;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;'>BRING IT ON!</button>",
                       showConfirmButton: false,
-                      allowOutsideClick: false
+                      allowOutsideClick: false,
+                      closeOnEsc: false
                     });
                     correctAnswers = correctAnswers + 1; // NUMBER OF CORRECT ANSWERS THE USER GETS
           qsscore = qsscore + 100;
-                    document.getElementById('answerIsCorrect').addEventListener("click", function(){continueGame=1;});
+                    document.getElementById('answerIsCorrect').addEventListener("click", function(){setTimeout(function(){continueGame=1;}, 500);});
                 }
                 else{
                     Swal.fire({
@@ -985,13 +1184,22 @@ function ajaxCall(finalscore){
                      title: 'Uh oh...',
                      html : "<div id ='showCorrectAnswer'> </div><br>" + "<button type='button' class ='decorateButton' id='answerIsIncorrect' onclick='swal.close()' style = 'background-color: #4CAF50;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;'>NO WORRIES!</button>",
                      showConfirmButton: false,
-                     allowOutsideClick: false
+                     allowOutsideClick: false,
+                     closeOnEsc: false,
+                     /* onClose: this.resumegamewithdelay */
                     });
                     document.getElementById('showCorrectAnswer').innerHTML = "The correct answer is <b>" + String(myAnswer.toUpperCase()) + "</b>"
-                    document.getElementById('answerIsIncorrect').addEventListener("click", function(){continueGame=1;});
+                    document.getElementById('answerIsIncorrect').addEventListener("click", function(){setTimeout(function(){continueGame=1;}, 500);});
                 }
             }
 
+            /* resumegamewithdelay(){
+              //
+              setTimeout(this.continueGame, 1000);
+              }
+              /* doesnt work bc setTimeout is weird with this. */
+
+            /*continuegame(){continueGame=1;} */
 
             checkGuess(){
                 // hangmanWord and randomlySelectedWord similarity
@@ -1011,18 +1219,19 @@ function ajaxCall(finalscore){
                         document.getElementById("CORRECT").innerHTML = "VOILA !!! ";
                         document.getElementById("tryGuess2").innerHTML = "<button type='submit' class ='decorateButton' id='FINALWINDOW' onclick='swal.close()' style = 'background-color: #4CAF50;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;'><b>RESUME GAME!</b></button>";
                         document.getElementById("FINALWINDOW").addEventListener("click",function(){continueGame=1;});
+                        randomlySelectedWord = "";
                     }
 
                     if (incorrectGuesses == 1 && guessIsCorrect == false){
-                        document.getElementById("hint1").innerHTML = "hint 1";
+                        document.getElementById("hint1").innerHTML = wordBank[randomlySelectedWord][0];
                     }
           else if (incorrectGuesses == 1 && guessIsCorrect == true){
             hmscore = 150;
           }
 
                     if (incorrectGuesses==2 && guessIsCorrect == false) {
-                        document.getElementById("hint1").innerHTML = "hint 1";
-                        document.getElementById("hint2").innerHTML = "hint 2";
+                        document.getElementById("hint1").innerHTML = wordBank[randomlySelectedWord][0];
+                        document.getElementById("hint2").innerHTML = wordBank[randomlySelectedWord][1];
                     }
 
           else if (incorrectGuesses == 2 && guessIsCorrect == true){
@@ -1030,9 +1239,9 @@ function ajaxCall(finalscore){
           }
                     if (incorrectGuesses==3 && guessIsCorrect == false){
 
-                        document.getElementById("hint1").innerHTML = "hint 1";
-                        document.getElementById("hint2").innerHTML = "hint 2";
-                        document.getElementById("hint3").innerHTML = "hint 3";
+                        document.getElementById("hint1").innerHTML = wordBank[randomlySelectedWord][0];
+                        document.getElementById("hint2").innerHTML = wordBank[randomlySelectedWord][1];
+                        document.getElementById("hint3").innerHTML = wordBank[randomlySelectedWord][2];
 
                     }
           else if (incorrectGuesses == 3 && guessIsCorrect == true){
@@ -1060,32 +1269,90 @@ function ajaxCall(finalscore){
             coin() {
 
                 this.mycoins = this.mycoins + 1;
-                document.getElementById("COINSCORE").classList.add("displayCoinCount");
-                document.getElementById("COINSCORE").innerHTML="<b> Coins: </b>" + String(this.mycoins);
+                document.getElementById("COINSCORE").classList.add("displayCoinCount"); /* add class to COINSCORE div*/
+                document.getElementById("COINSCORE").innerHTML="<b> Coins: </b>" + String(this.mycoins); /* add text inside the COINSCORE div*/
                 let wordLength = this.selectWord();
 
-                // I declared the variable this.mycoins and this.questionCount above after the class declaration.
-
+                /* I declared the variable this.mycoins and this.questionCount above after the class declaration. */
+                console.log("wordLength",wordLength);
+                console.log("questionCount",this.questionCount);
                 if (this.questionCount<wordLength){
 
 
-                    if (this.mycoins % 100 == 0){
-                        var randomNumber = Math.floor(Math.random()*2) + 1;
-                        randomNumber = randomNumber - 1;
-                        var myQuestion = (Object.keys(questionBank)[randomNumber]);
-                        myAnswer = questionBank[myQuestion];
+                    if (this.mycoins % <?php echo strval($coinsforQ) ?> == 0){
+                        /* get a random integer from 0 to length(questionBank)-1 (index of last question) */
+                        var randomQNumber = Math.floor(Math.random()*(Object.keys(questionBank).length));
+                        console.log("randomQNumber",randomQNumber);
+                        /* get quesiton (key) */
+                        var myQuestion = (Object.keys(questionBank)[randomQNumber]);
+                        console.log("myQuestion",myQuestion);
+                        /* get answer (value corresponding to that key) */
+                        myAnswer = questionBank[myQuestion][0];
+                        console.log("myAnswer",myAnswer);
                         this.questionCount=this.questionCount + 1;
                         continueGame=0;
-                        Swal.fire({
-                          title: '<strong><u> Time for a question!</u></strong>',
 
-                          html: "<p id = 'question'> </p>" + "<input placeholder='Try your luck here' class='swal2-input' id='answer'>" + "<button type='submit' class ='decorateButton' id='checkanswer' onclick='swal.close()' style = 'background-color: #4CAF50;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;'>SUBMIT</button>",
+                        /* multiple choice */
+                        if (questionBank[myQuestion][1]){
+                          /* inputOptions can be an object or Promise */
+                          const inputOptions = new Promise((resolve) => {
+                            setTimeout(() => {
+                              resolve({
+                                '#ff0000': <?php echo ,
+                                '#00ff00': 'Green',
+                                '#0000ff': 'Blue'
+                              })
+                            }, 1000)
+                          })
+
+                          const { value: color } = await Swal.fire({
+                            title: 'Select color',
+                            input: 'radio',
+                            inputOptions: inputOptions,
+                            inputValidator: (value) => {
+                              if (!value) {
+                                return 'You need to choose something!'
+                              }
+                            }
+                          })
+
+                          if (color) {
+                            Swal.fire({ html: `You selected: ${color}` })
+                          }
+                        }
+
+                        /* not multiple choice */
+                        else{
+                        Swal.fire({
+                          title: '<strong><u>Time for a question!</u></strong>',
+                          padding: '2.2em',
+                          /* background: rgba(255,255,255, 0.85), */
+                          /* customClass: {
+                            popup: 'my-swal'
+                          }, */
+                          html: "<p id = 'question'> </p>" +
+
+                          "<input placeholder='Try your luck here' class='swal2-input' id='answer'>" +
+
+                          "<button type='submit' class ='decorateButton' id='checkanswer' onclick='swal.close()' style = 'background-color: #4CAF50;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;'>SUBMIT</button>",
+                          inputValidator: (value) => {
+                            if (!value) {
+                              return 'Please enter an answer'
+                            }
+                          },
                           showConfirmButton: false,
                           allowOutsideClick: false
                         });
                         document.getElementById("question").innerHTML = myQuestion;
+                        /* submit via submit button click */
                         document.getElementById("checkanswer").addEventListener("click", this.checkAnswer);
-                    }
+                        /* submit via enter key in answer field */
+                        document.getElementById("answer").addEventListener("keyup", function(event) {
+                          if (event.keyCode === 13) {
+                            event.preventDefault();
+                            document.getElementById("checkanswer").click();}
+                          });
+                    }}
                 }
                 else if (this.questionCount==wordLength){
                     this.questionCount = wordLength + 1;  // TO STOP ASKING QUESTIONS
@@ -1097,12 +1364,11 @@ function ajaxCall(finalscore){
                         hangmanWord=hangmanWord + "-";
                     }
                     while (loopCount < correctAnswers){
-                        randomPosition = Math.floor(Math.random()*wordLength) + 1;
-                        randomPosition = randomPosition - 1;
-                        inArray = allRandomPositions.includes(randomPosition);  // check whether random position is already created or not
+                        randomPosition = Math.floor(Math.random()*(wordLength+1));
+                        inArray = allRandomPositions.includes(randomPosition);  /* check whether random position is already created or not */
                         if (!inArray){
                             allRandomPositions.push(randomPosition);
-                            hangmanWord = hangmanWord.substring(0, randomPosition) + randomlySelectedWord[randomPosition] + hangmanWord.substring(randomPosition + randomlySelectedWord[randomPosition].length);
+                            hangmanWord = hangmanWord.substring(0, randomPosition) + randomlySelectedWord[randomPosition] + hangmanWord.substring(randomPosition + 1, randomlySelectedWord.length);
                             loopCount = loopCount + 1;
                         }
                     }
@@ -1112,7 +1378,8 @@ function ajaxCall(finalscore){
                     }
 
                     Swal.fire({
-                      title: '<strong><u> Time for Hangman! </u></strong>',
+                      title: '<strong><u> Time for a mystery word! </u></strong>',
+                      padding: '2.2em',
 
                       html: "<b><p id = 'question'> </p></b>" + "<input placeholder='Enter your guess word here' class='swal2-input' id='hangmanAnswer'>" + "<p id='tryGuess2'><button type='submit' id='tryGuess' class ='decorateButton' style = 'background-color: #4CAF50;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;'>TRYING MY LUCK...</button></p>" + "<p id='hint1'></p><p id='hint2'></p><p id='hint3'></p><p id='revealAnswer'></p><p id ='CORRECT'></p><p id ='addEndButton'></p>",
                       showConfirmButton: false,
@@ -1122,11 +1389,26 @@ function ajaxCall(finalscore){
                     document.getElementById("question").innerHTML=hangmanWord;
 
 
-
+                    /* should the // lines be commented out or no?*/
                     //while (incorrectGuesses<3 && guessIsCorrect==false)
                     //{
-
+                    /* submit via button click*/
                     document.getElementById("tryGuess").addEventListener('click',this.checkGuess);
+                    /* submit via enter key in answer field */
+                    document.getElementById("hangmanAnswer").addEventListener("keyup", function(event){
+                      if (event.keyCode === 13) { /* if enter key is pressed...*/
+                        event.preventDefault();
+                        /* check if there's a "submit word guess button rn"*/
+                        if(document.getElementById("tryGuess") !== null){
+                          /* if so, click it*/
+                          document.getElementById("tryGuess").click();
+                        }
+                        else {
+                          /* if not, click the button that shows up when you've used all your guess and/or gotten the word right*/
+                          document.getElementById("FINALWINDOW").click();
+                        }
+                      }
+                    });
                         //incorrectGuesses = incorrectGuesses * 1;
                     //}
 
@@ -1150,7 +1432,7 @@ function ajaxCall(finalscore){
                     e = this.scale,
                     s = this.transform.rotate,
                     i = (this.speedTime ? .13 : .08) + Math.min(this.distance / 15e3, .04);
-                this.speed.z += ((this.active ? i : 0) - this.speed.z) / 20, this.speedTime -= this.speedTime > 0 ? 1 : 0, this.color = this.magnetTime > 100 || this.magnetTime % 20 > 10 ? D.PINK : D.WHITE, this.scale += ((this.scaleTime ? .5 : .7) - this.scale) / 5, this.scaleTime -= this.scaleTime > 0 ? 1 : 0, this.magnetTime -= this.magnetTime > 0 ? 1 : 0, this.tokenCollider.scale = this.magnetTime ? this.magnet : this.transform.scale, this.stroke += (this.explode - this.stroke) / 25, this.active = t.y > -10 && this.stroke < 6, this.active && !this.stroke && (this.acc -= this.acc > -.012 ? .003 : 0, s.z = 90 + 25 * (t.x - this.x), s.y = (s.y + 100 * this.speed.z) % 360, this.speed.y += this.acc, this.speed.y < -.25 && (this.speed.y = -.25), t.x += (this.x - t.x) / 7, t.y += this.speed.y, t.z -= t.z / 30, this.transform.scale.set(e, e, e))
+                this.speed.z += ((this.active ? i : 0) - this.speed.z) / 20, this.speedTime -= this.speedTime > 0 ? 1 : 0, this.color = this.magnetTime > 100 || this.magnetTime % 20 > 10 ? D.PINK : D.AVATAR, this.scale += ((this.scaleTime ? .5 : .7) - this.scale) / 5, this.scaleTime -= this.scaleTime > 0 ? 1 : 0, this.magnetTime -= this.magnetTime > 0 ? 1 : 0, this.tokenCollider.scale = this.magnetTime ? this.magnet : this.transform.scale, this.stroke += (this.explode - this.stroke) / 25, this.active = t.y > -10 && this.stroke < 6, this.active && !this.stroke && (this.acc -= this.acc > -.012 ? .003 : 0, s.z = 90 + 25 * (t.x - this.x), s.y = (s.y + 100 * this.speed.z) % 360, this.speed.y += this.acc, this.speed.y < -.25 && (this.speed.y = -.25), t.x += (this.x - t.x) / 7, t.y += this.speed.y, t.z -= t.z / 30, this.transform.scale.set(e, e, e))
 
             }
 
@@ -1158,7 +1440,7 @@ function ajaxCall(finalscore){
                 let t = this.transform.rotate;
                 t.y = (t.y + 1) % 360, t.z = (t.z + .7) % 360
             }
-        }(X.hero[0], D.WHITE),
+        }(X.hero[0], D.AVATAR),
         J = new class extends z {
             constructor(t, e, s) {
                 super(), this.map = s, this.hero = t, this.add(this.hero), this.planets = document.getElementsByTagName("LI"), this.platforms = [];
@@ -1283,19 +1565,30 @@ function ajaxCall(finalscore){
         s && (H.cullFace(e > 0 ? H.FRONT : H.BACK), H.useProgram(G.program), G.attrib("aPos", t.mesh.verts, 3).attrib("aNorm", t.mesh.normals, 3).uniform("uWorld", $.transform(t.transform).data).uniform("uProj", $.perspective().data).uniform("uInverse", s).uniform("uColor", e ? [0, 0, 0, 1] : t.color).uniform("uLight", q.clone().sub($.position).toArray()).uniform("uStroke", e + t.stroke), H.drawArrays(H.TRIANGLES, 0, t.mesh.length))
     }
 
-    function tt() {
+    function tt() { /* called when you die */
         if (requestAnimationFrame(tt), H.clear(H.COLOR_BUFFER_BIT), U.shop) return K.mesh = X.hero[U.selected], K.preview(), Q(K), void Q(K, .01);
         let t = (new Date).getTime();
         if (t - W > 30 && J.update(), W = t, J.update(), Q(J), Q(J, .01), !K.active && V) {
             let t = p.mixer("music"),
                 e = t.context.currentTime;
-            t.gain.setValueCurveAtTime(Float32Array.from([U.volume, 0]), e, .5), V.stop(e + .5), V = null
+            /* fade music out */
+            t.gain.setValueCurveAtTime(Float32Array.from([U.musicvolume, 0]), e, .5), V.stop(e + .5), V = null
         }!U.active && J.ended() && U.score(K)
     }
     async function et() {
         Y = !0;
         let t = B("#start");
-        t.className = "disabled", t.textContent = "loading", await p.init(), await Promise.all([p.sound("exp", new d("custom", [5, 1, 0], 1), [220, 0], 1), p.sound("hit", new d("custom", [3, 1, 0], 1), [1760, 0], .3), p.sound("power", new d("square", [.5, .1, 0], 1), [440, 880, 440, 880, 440, 880, 440, 880], .3), p.sound("jump", new d("triangle", [.5, .1, 0], 1), [220, 880], .3), p.sound("coin", new d("square", [.2, .1, 0], .2), [1760, 1760], .2), p.sound("move", new d("custom", [.1, .5, 0], .3), [1760, 440], .3), p.music("music", [new f(new d("sawtooth", [1, .3], .2), "8a2,8a2,8b2,8c3|8|8g2,8g2,8a2,8b2|8|8e2,8e2,8f2,8g2|4|8g2,8g2,8a2,8b2|4|".repeat(4), 1), new f(new d("sawtooth", [.5, .5], 1), "1a3,1g3,2e3,4b3,4c4,1a3c3e3,1g3b3d4,2e3g3b3,4d3g3b3,4g3c4e4|1|" + "8a3,8a3e4,8a3d4,8a3e4|2|8g3,8g3d4,8g3c4,8g3d4|2|8e3,8e3a3,8e3b3,8e3a3,4g3b3,4g3c4|1|".repeat(2), 4)])]), B("#load").className = "hide", tt()
+        t.className = "disabled",
+        t.textContent = "loading",
+        await p.init(),
+        await Promise.all([p.sound("exp", new d("custom", [5, 1, 0], 1), [220, 0], 1),
+        p.sound("hit", new d("custom", [3, 1, 0], 1), [1760, 0], .3),
+        p.sound("power", new d("square", [.5, .1, 0], 1), [440, 880, 440, 880, 440, 880, 440, 880], .3),
+        p.sound("jump", new d("triangle", [.5, .1, 0], 1), [220, 880], .3),
+        p.sound("coin", new d("square", [.2, .1, 0], .2), [1760, 1760], .2), p.sound("move", new d("custom", [.1, .5, 0], .3), [1760, 440], .3),
+        p.music("music", [new f(new d("sawtooth", [1, .3], .2), "8a2,8a2,8b2,8c3|8|8g2,8g2,8a2,8b2|8|8e2,8e2,8f2,8g2|4|8g2,8g2,8a2,8b2|4|".repeat(4), 1),
+        new f(new d("sawtooth", [.5, .5], 1), "1a3,1g3,2e3,4b3,4c4,1a3c3e3,1g3b3d4,2e3g3b3,4d3g3b3,4g3c4e4|1|" + "8a3,8a3e4,8a3d4,8a3e4|2|8g3,8g3d4,8g3c4,8g3d4|2|8e3,8e3a3,8e3b3,8e3a3,4g3b3,4g3c4|1|".repeat(2), //tune
+        4)])]), B("#load").className = "hide", tt()
     }
     L(window, "load", async () => {
         K.init(), H.clearColor(0, 0, 0, 0), H.enable(H.CULL_FACE), H.enable(H.DEPTH_TEST), $.rotate.x = -.7, $.position.set(0, 0, 1.2), K.transform.rotate.set(10, 22, 30), Q(K), Q(K, .02), B("link[rel=apple-touch-icon]").href = B("link[rel=icon]").href = j.toDataURL(), $.position.set(0, .5, 5), Z(),
@@ -1330,8 +1623,11 @@ function ajaxCall(finalscore){
                 }), i.on("start", () => {
                     if (U.hide(), J.init(), !V) {
                         let t = p.mixer("music"),
-                            e = t.context.currentTime;
-                        t.gain.setValueAtTime(U.volume, e), V = p.play("music", !0, "music")
+                            s = p.mixer("master"),
+                            i = t.context.currentTime;
+                        if (!isFinite(U.musicvolume)){U.musicvolume=0;U.sfxvolume=0;} /* if volume hasn't been set (this is the player's first round of this session, mute everything)*/
+                        t.gain.setValueAtTime(U.musicvolume, i), s.gain.setValueAtTime(U.sfxvolume, i), /* i think it doesn't like (U.volume, i) bc U.volume hasn't been set. idk how to set that before the game begins the first round but not reset it every round. */
+                        V = p.play("music", !0, "music")
                     }
                 }), i.on("end", () => {
                     K.init(!1), U.show()

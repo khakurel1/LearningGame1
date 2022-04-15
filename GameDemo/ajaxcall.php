@@ -1,3 +1,5 @@
+<!-- Ajax Call -->
+
 <?php
 $dbhost = "localhost";
 $dbuser = "felleson1";
