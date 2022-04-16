@@ -1,3 +1,5 @@
+<!-- Connection -->
+
 <?php
 
 $dbhost = "localhost";
