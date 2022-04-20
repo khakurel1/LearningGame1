@@ -85,6 +85,10 @@ html{
     .my-swal {
       background: rgba(255,255,255,.8)!important;;
     }
+
+    .confirm {
+      display: none;
+    }
   }
 h2{line-height:30px}h2,
 h3{font-size:18px}
@@ -281,16 +285,16 @@ function entertrigger (event) {
 }, function(t, e, s) {}, function(t, e, s) {
     /* console.log("hey"); */
     var questionBank = {
-      /* "What is 2+2?" : ["4",0,"math"], */
+      "What is 2+2?" : ["4",0,"math"],
       "One night while camping, a student observes that the moon and stars appear to move across the sky. Which statement describes why the moon and stars appear to change position?":["a",1,"space","A. Earth rotates","B. Earth is tilted","C. Earth orbits the sun","D. Earth moves away from the sun"],
-      /* "James bought 5/4 pounds of rice. Which decimal is equivalent to the amount of rice that he bought?":["1.25",0,"math"], */
-      "What is the smallest planet in the solar system?":["mercury",0,"space"],
-      /* "Ian mowed one fourth of the yard today. This is equivalent to ___ percent.":["25",0,"math"],
+      "James bought 5/4 pounds of rice. Which decimal is equivalent to the amount of rice that he bought?":["1.25",0,"math"],
+      /* "What is the smallest planet in the solar system?":["mercury",0,"space"],
+      "Ian mowed one fourth of the yard today. This is equivalent to ___ percent.":["25",0,"math"],
       "What celestial body is made of ice and gas?":["comet",0,"space"],
       "5 minutes 34 seconds is ___ seconds":["334",0,"math"], */
       "Which motion causes the change from day to night on Earth?":["b",1,"space","A. Earth orbiting the Sun","B. Earth rotating on its axis","C. the moon orbiting Earth","D. the moon rotating on its axis"],
-      /* "6 feet 10 inches is ___ inches":["82",0,"math"], */
-      /* "Fill in the blank: Bees help flowers reproduce by carrying ___ to other flowers.":"pollen",
+      /* "6 feet 10 inches is ___ inches":["82",0,"math"],
+      "Fill in the blank: Bees help flowers reproduce by carrying ___ to other flowers.":["pollen",0,"nature"],
       "Mr. Skon has been driving a car at 50 miles per hour for 90 minutes. How many miles has he traveled?":"125",
       "Which of the following is not a carnivore? <br> A. Cougar<br>B. Snake<br>C. Giraffe<br>D. Lion":"c",
       "If Earth has an orbital radius of 150 million kilometres, and Mars has an orbital radius of 228 million kilometres, then does Earth have a <b>shorter</b> or <b>longer</b> year than Mars? ":"shorter",
@@ -1330,13 +1334,18 @@ function entertrigger (event) {
                               });
                           });
 
+                          jQuery(".confirm").attr('disabled', 'disabled');
+
                           Swal.fire({
+                            buttons: false,
+                            showCancelButton: false,
+                            showConfirmButton: false,
+                            closeOnClickOutside: false,
+
                             title: '<strong><u>Time for a question!</u></strong>',
                             padding: '2.2em',
-                            showConfirmButton: false,
                             allowOutsideClick: false,
                             allowEnterKey: false,
-
 
                             input: 'radio',
                             inputOptions: inputOptions,
@@ -1349,16 +1358,21 @@ function entertrigger (event) {
                               }
                             }, */
 
-                            /* confirmButtonText: 'SUBMIT',
-                            confirmButtonText: '#DD6B55', */
+                            /* confirmButtonText: "don't click this",
+                            confirmButtonColor: '#e00000', */
                             /*swal has built-in confirm and cancel buttons. the following line assigns ids to them*/
                             /* onOpen: function() { jQuery('.swal2-confirm').attr('id','btnConfirm'); jQuery('.swal2-cancel').attr('id','btnCancel');} */
 
 
-                            onOpen: function(){document.addEventListener("keyup", entertrigger, true);}
-                            /* submit via submit button click */
+                            /* submit via submit button click (listen for enter here. calls on a global function.) */
+                            onOpen: function(){document.addEventListener("keyup", entertrigger, true);},
 
-                             /*end swal*/
+                            buttons: false,
+                            showCancelButton: false,
+                            showConfirmButton: false,
+                            closeOnClickOutside: false,
+
+                            /*end swal*/
                             }).then( (result) => {
                               document.removeEventListener("keyup", function(event) {
                                 if (event.keyCode === 13) {
@@ -1366,10 +1380,10 @@ function entertrigger (event) {
                                   document.getElementById("checkanswer").click();
                                 }
                               });
+                              this.checkAnswer;
                               /* let answerr = jQuery('input[name=swal2-radio]:checked').val();
                               console.log('answerr:', answerr);
                               console.log(answerr == undefined);
-                              /* this.checkAnswer; */
                               /* if (console.log(answerr == undefined)){continueGame=1;}  */
                             })
                             ;
