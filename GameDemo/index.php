@@ -1180,6 +1180,8 @@ function entertrigger (event) {
             }
 
             checkAnswer(){
+              document.removeEventListener("keyup", entertrigger, true);
+              
               console.log("checkAnswer started");
                 continueGame=0;
                 if (questionBank[myQuestion][1]){
