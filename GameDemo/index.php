@@ -1,4 +1,4 @@
-<!-- Index -->
+Index
 
 <?php
 session_start();
@@ -22,7 +22,7 @@ session_start();
   $convertmonthQuery = mysqli_query($con, $monthlyQuery);
   $convertallQuery = mysqli_query($con, $alltimeQuery);
 
-  $coinsforQ = 10;
+  $coinsforQ = 5;
 
   $avcolor1 = '1'; //must be between 0 & 1 (inclusive, i think)
   $avcolor2 = '1';
@@ -209,9 +209,27 @@ function ajaxCall(thisroundscore){
                         }
                 });
 }
+
+var myQuestion;
+
+
+function entertrigger (event) {
+  if (event.keyCode === 13) {
+    event.preventDefault();
+    document.getElementById("checkanswer").click();
+
+    document.removeEventListener("keyup", entertrigger, true);
+  }
+}
+
+
+
+
+
     ! function(t) {
 
     var e = {};
+
 
     var xclaim=2;
     function s(i) {
@@ -263,18 +281,17 @@ function ajaxCall(thisroundscore){
 }, function(t, e, s) {}, function(t, e, s) {
     /* console.log("hey"); */
     var questionBank = {
-      "What is 2+2?" : ["4",0],
-      "One night while camping, a student observes that the moon and stars appear to move across the sky. Which statement describes why the moon and stars appear to change position? <br>A. Earth rotates <br>B. Earth is tilted <br>C. Earth orbits the sun <br>D. Earth moves away from the sun":["a",1],
-      "James bought 5/4 pounds of rice. Which decimal is equivalent to the amount of rice that he bought?":["1.25",0],
-      "What is the smallest planet in the solar system?":["mercury",1],
-      "Ian mowed one fourth of the yard today. This is equivalent to ___ percent.":["25",0],
-      "What celestial body is made of ice and gas?":["comet",0],
-      "5 minutes 34 seconds is ___ seconds":["334",0],
-      "Which motion causes the change from day to night on Earth? <br>A. Earth orbiting the Sun <br>B. Earth rotating on its axis<br>C. the moon orbiting Earth<br>D. the moon rotating on its axis":["b",1],
-      "6 feet 10 inches is ___ inches":["82",0],
+      /* "What is 2+2?" : ["4",0,"math"], */
+      "One night while camping, a student observes that the moon and stars appear to move across the sky. Which statement describes why the moon and stars appear to change position?":["a",1,"space","A. Earth rotates","B. Earth is tilted","C. Earth orbits the sun","D. Earth moves away from the sun"],
+      /* "James bought 5/4 pounds of rice. Which decimal is equivalent to the amount of rice that he bought?":["1.25",0,"math"], */
+      "What is the smallest planet in the solar system?":["mercury",0,"space"],
+      /* "Ian mowed one fourth of the yard today. This is equivalent to ___ percent.":["25",0,"math"],
+      "What celestial body is made of ice and gas?":["comet",0,"space"],
+      "5 minutes 34 seconds is ___ seconds":["334",0,"math"], */
+      "Which motion causes the change from day to night on Earth?":["b",1,"space","A. Earth orbiting the Sun","B. Earth rotating on its axis","C. the moon orbiting Earth","D. the moon rotating on its axis"],
+      /* "6 feet 10 inches is ___ inches":["82",0,"math"], */
       /* "Fill in the blank: Bees help flowers reproduce by carrying ___ to other flowers.":"pollen",
       "Mr. Skon has been driving a car at 50 miles per hour for 90 minutes. How many miles has he traveled?":"125",
-      "One night while camping, a student observes that the moon and stars appear to move across the sky. Which statement describes why the moon and stars appear to change position? <br>A. Earth rotates <br>B. Earth is tilted <br>C. Earth orbits the sun <br>D. Earth moves away from the sun":"a",
       "Which of the following is not a carnivore? <br> A. Cougar<br>B. Snake<br>C. Giraffe<br>D. Lion":"c",
       "If Earth has an orbital radius of 150 million kilometres, and Mars has an orbital radius of 228 million kilometres, then does Earth have a <b>shorter</b> or <b>longer</b> year than Mars? ":"shorter",
       "A store only sells 20-pound bags of ice. Over the weekend, the store sells 700 bags of ice, making $2,800. On Monday, the store sells 70 bags of ice.<br>How much (in dollars) does the store make selling ice on Monday? Enter the number in the box.":"280",
@@ -285,8 +302,8 @@ function ajaxCall(thisroundscore){
       "If a cube's side length is 4, what is its volume?":"64",
       "Which number rounds to 3.8?  <br>A. 3.73 <br>B. 3.70 <br>C. 3.87 <br>D. 3.82":"d",
       "Which of the following organisms operate as decomposers? <br>A. Bacteria <br>B. Plants <br>C. Insects <br>D. Animals":"b",
-      "Which of the following years is furthest back in history? <br>A. 100 A.D. <br>B. 50 B.C.  <br>C. 3 B.C.  <br>D. 18 A.D.":"b",
-      "Which two continents are located completely in the Western Hemisphere? <br>A. Asia and Europe <br>B. South America and Africa <br>C. North America and South America <br>D. Antarctica and Asia":"c" */
+      "Which of the following years is furthest back in history? <br>A. 100 A.D. <br>B. 50 B.C.  <br>C. 3 B.C.  <br>D. 18 A.D.":"b", */
+      "Which two continents are located completely in the Western Hemisphere?": ["c",1,"geography","A. Asia and Europe","B. South America and Africa","C. North America and South America","D. Antarctica and Asia"]
     };
     var myAnswer = "";
     var wordBank = {
@@ -1147,7 +1164,7 @@ function ajaxCall(thisroundscore){
                 var randomWNumber = 0;
                 /* get quesiton (key) */
                 randomlySelectedWord = Object.keys(wordBank)[randomWNumber];
-                console.log("randomlySelectedWord",randomlySelectedWord);
+                /* console.log("randomlySelectedWord",randomlySelectedWord); */
                 }
                 let length = randomlySelectedWord.length;
                 return length;
@@ -1159,8 +1176,17 @@ function ajaxCall(thisroundscore){
             }
 
             checkAnswer(){
+              console.log("checkAnswer started");
                 continueGame=0;
-                var enteredAnswer = document.getElementById("answer").value;
+                if (questionBank[myQuestion][1]){
+                  let enteredAnswer1 = jQuery('input[name=swal2-radio]:checked').val();
+                  if (enteredAnswer1 == undefined){enteredAnswer1='0';console.log("enteredAnswer1_undef",enteredAnswer1);}
+                  var enteredAnswer = enteredAnswer1;
+                  console.log("enteredAnswer",enteredAnswer);
+                }
+                else {var enteredAnswer = document.getElementById("answer").value;}
+
+                if (enteredAnswer == undefined){enteredAnswer='0';console.log("enteredAnswer_undef",enteredAnswer);}
                 var newstring = enteredAnswer.trim().toLowerCase()
 
                 if (newstring==myAnswer){
@@ -1271,54 +1297,131 @@ function ajaxCall(thisroundscore){
                 this.mycoins = this.mycoins + 1;
                 document.getElementById("COINSCORE").classList.add("displayCoinCount"); /* add class to COINSCORE div*/
                 document.getElementById("COINSCORE").innerHTML="<b> Coins: </b>" + String(this.mycoins); /* add text inside the COINSCORE div*/
-                let wordLength = this.selectWord();
 
+                let wordLength = this.selectWord();
                 /* I declared the variable this.mycoins and this.questionCount above after the class declaration. */
                 console.log("wordLength",wordLength);
                 console.log("questionCount",this.questionCount);
-                if (this.questionCount<wordLength){
-
+                if (this.questionCount<wordLength){ /* the order of these two if statements seems not ideal, but if you switch them the game glitches every time you collect a coin*/
 
                     if (this.mycoins % <?php echo strval($coinsforQ) ?> == 0){
                         /* get a random integer from 0 to length(questionBank)-1 (index of last question) */
                         var randomQNumber = Math.floor(Math.random()*(Object.keys(questionBank).length));
                         console.log("randomQNumber",randomQNumber);
                         /* get quesiton (key) */
-                        var myQuestion = (Object.keys(questionBank)[randomQNumber]);
+                        myQuestion = (Object.keys(questionBank)[randomQNumber]);
                         console.log("myQuestion",myQuestion);
                         /* get answer (value corresponding to that key) */
                         myAnswer = questionBank[myQuestion][0];
-                        console.log("myAnswer",myAnswer);
+                        /* console.log("myAnswer",myAnswer); */
                         this.questionCount=this.questionCount + 1;
                         continueGame=0;
 
                         /* multiple choice */
                         if (questionBank[myQuestion][1]){
                           /* inputOptions can be an object or Promise */
-                          const inputOptions = new Promise((resolve) => {
-                            setTimeout(() => {
+                          /* inputOptions can be an object or Promise*/
+                          var inputOptions = new Promise(function(resolve) {
                               resolve({
-                                '#ff0000': <?php echo ,
-                                '#00ff00': 'Green',
-                                '#0000ff': 'Blue'
-                              })
-                            }, 1000)
-                          })
+                                'a': questionBank[myQuestion][3],
+                                'b': questionBank[myQuestion][4],
+                                'c': questionBank[myQuestion][5],
+                                'd': questionBank[myQuestion][6]
+                              });
+                          });
 
-                          const { value: color } = await Swal.fire({
-                            title: 'Select color',
+                          Swal.fire({
+                            title: '<strong><u>Time for a question!</u></strong>',
+                            padding: '2.2em',
+                            showConfirmButton: false,
+                            allowOutsideClick: false,
+                            allowEnterKey: false,
+
+
                             input: 'radio',
                             inputOptions: inputOptions,
-                            inputValidator: (value) => {
-                              if (!value) {
-                                return 'You need to choose something!'
-                              }
-                            }
-                          })
 
-                          if (color) {
-                            Swal.fire({ html: `You selected: ${color}` })
-                          }
+                            html: "<p id = 'question'> </p>" +
+                            "<button type='submit' class ='decorateButton' id='checkanswer' onclick='swal.close()' style = 'background-color: #4CAF50;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;'>SUBMIT</button>",
+                            /* inputValidator: (value) => {
+                              if (!value) {
+                                return 'Please enter an answer'
+                              }
+                            }, */
+
+                            /* confirmButtonText: 'SUBMIT',
+                            confirmButtonText: '#DD6B55', */
+                            /*swal has built-in confirm and cancel buttons. the following line assigns ids to them*/
+                            /* onOpen: function() { jQuery('.swal2-confirm').attr('id','btnConfirm'); jQuery('.swal2-cancel').attr('id','btnCancel');} */
+
+
+                            onOpen: function(){document.addEventListener("keyup", entertrigger, true);}
+                            /* submit via submit button click */
+
+                             /*end swal*/
+                            }).then( (result) => {
+                              document.removeEventListener("keyup", function(event) {
+                                if (event.keyCode === 13) {
+                                  event.preventDefault();
+                                  document.getElementById("checkanswer").click();
+                                }
+                              });
+                              /* let answerr = jQuery('input[name=swal2-radio]:checked').val();
+                              console.log('answerr:', answerr);
+                              console.log(answerr == undefined);
+                              /* this.checkAnswer; */
+                              /* if (console.log(answerr == undefined)){continueGame=1;}  */
+                            })
+                            ;
+
+                            /* submit via submit button click */
+                            document.getElementById("checkanswer").addEventListener("click", console.log("clicked"));
+                            document.getElementById("checkanswer").addEventListener("click", this.checkAnswer);
+                            /* submit via enter key */
+                            /* document.addEventListener("keyup", function(event) {
+                              if (event.keyCode === 13) {
+                                event.preventDefault();
+                                document.getElementById("checkanswer").click();}
+                            }); */
+
+
+                            /* jQuery(document).on("click",".swal2-container input[name='swal2-radio']", function() {
+                                var id = jQuery('input[name=swal2-radio]:checked').val();
+                                console.log('id: ' + id);
+                            }); */
+                            /* inputValidator: (value) => { /* should value be result?*/
+                              /* return new Promise(function(resolve, reject) {
+                                if (value) {
+                                  resolve();
+                                } else {
+                                  reject('You need to select something!');
+                                } */
+                              /* }); */
+                            /* }; */
+                            /* document.getElementById("btnConfirm").addEventListener("click", this.checkAnswer);
+                            /* submit via enter key in answer field */
+                            /* document.addEventListener("keyup", function(event) { */
+                              /* if (event.keyCode === 13) {
+                                event.preventDefault();
+                                document.getElementById("btnConfirm").click();} */
+                              /* }); */
+
+                            document.getElementById("question").innerHTML = myQuestion;
+
+
+
+                          document.getElementById("question").innerHTML = myQuestion;
+
+                          jQuery(document).on("click",".swal2-container input[name='swal2-radio']",
+                            function() {
+                            	var id = jQuery('input[name=swal2-radio]:checked').val();
+                            	console.log('id: ' + id);
+                              }
+                          );
+
+
+
+
                         }
 
                         /* not multiple choice */
@@ -1335,14 +1438,15 @@ function ajaxCall(thisroundscore){
                           "<input placeholder='Try your luck here' class='swal2-input' id='answer'>" +
 
                           "<button type='submit' class ='decorateButton' id='checkanswer' onclick='swal.close()' style = 'background-color: #4CAF50;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;'>SUBMIT</button>",
-                          inputValidator: (value) => {
+                          /* inputValidator: (value) => {
                             if (!value) {
                               return 'Please enter an answer'
                             }
-                          },
+                          }, */
                           showConfirmButton: false,
                           allowOutsideClick: false
                         });
+
                         document.getElementById("question").innerHTML = myQuestion;
                         /* submit via submit button click */
                         document.getElementById("checkanswer").addEventListener("click", this.checkAnswer);
@@ -1351,8 +1455,9 @@ function ajaxCall(thisroundscore){
                           if (event.keyCode === 13) {
                             event.preventDefault();
                             document.getElementById("checkanswer").click();}
-                          });
-                    }}
+                        });
+                      }
+                  }
                 }
                 else if (this.questionCount==wordLength){
                     this.questionCount = wordLength + 1;  // TO STOP ASKING QUESTIONS
