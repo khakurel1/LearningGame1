@@ -22,7 +22,7 @@ session_start();
   $convertmonthQuery = mysqli_query($con, $monthlyQuery);
   $convertallQuery = mysqli_query($con, $alltimeQuery);
 
-  $coinsforQ = 15;
+  $coinsforQ = 20;
 
   $avcolor1 = '1'; //must be between 0 & 1 (inclusive, i think)
   $avcolor2 = '1';
@@ -89,6 +89,19 @@ html{
     .confirm {
       display: none;
     }
+
+    .swal2-radio {
+    display: grid !important;
+    }
+
+    .swal2-radio label{
+      display: block
+    }
+
+    .swal2-modal .swal2-radio label {
+      margin-left: 0px !important;
+    }
+
   }
 h2{line-height:30px}h2,
 h3{font-size:18px}
@@ -302,7 +315,6 @@ function entertrigger (event) {
       "What number below is larger than 32.42?" : ["c",1,"math","A. 32.418","B. 32.399","C. 32.502","D. 31.98"],
       "If a rectangle's area is 3,500 centimeters squared and its length is 100, what is its width? __ cm":["35",0,"math"],
       "If we divide 51 by 9, the result is between... " : ["c",1,"math","A. 3 and 4","B. 4 and 5","C. 5 and 6","D. 6 and 7"],
-      "1074 x 64 – 3 = ?":["68733",0,"math"],
       "If a cube's side length is 4, what is its volume?":["64",0,"math"],
       "Which number rounds to 3.8?" : ["d",1,"math","A. 3.73","B. 3.70","C. 3.87","D. 3.82"],
       "Which of the following organisms operate as decomposers?" : ["a",1,"nature","A. Bacteria","B. Plants","C. Insects","D. Animals"],
@@ -1344,6 +1356,7 @@ function entertrigger (event) {
                             showCancelButton: false,
                             showConfirmButton: false,
                             closeOnClickOutside: false,
+                            closeOnConfirm: false,
 
                             title: '<strong><u>Time for a question!</u></strong>',
                             padding: '2.2em',
