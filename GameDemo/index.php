@@ -308,7 +308,7 @@ function entertrigger (event) {
       "Which motion causes the change from day to night on Earth?":["b",1,"space","A. Earth orbiting the Sun","B. Earth rotating on its axis","C. the moon orbiting Earth","D. the moon rotating on its axis"],
       "6 feet 10 inches is ___ inches":["82",0,"math"],
       "Fill in the blank: Bees help flowers reproduce by carrying ___ to other flowers.":["pollen",0,"nature"],
-      "Mr. Skon has been driving a car at 50 miles per hour for 90 minutes. How many miles has he traveled?":["125",0,"math"],
+      "Mr. Skon has been driving a car at 50 miles per hour for 90 minutes. How many miles has he traveled?":["75",0,"math"],
       "Which of the following is not a carnivore?" : ["c",1,"nature","A. Cougar","B. Snake","C. Giraffe","D. Lion"],
       "If Earth has an orbital radius of 150 million kilometres, and Mars has an orbital radius of 228 million kilometres, then does Earth have a <b>shorter</b> or <b>longer</b> year than Mars? ":["shorter",0,"space"],
       "A store only sells 20-pound bags of ice. Over the weekend, the store sells 700 bags of ice, making $2,800. On Monday, the store sells 70 bags of ice.<br>How much (in dollars) does the store make selling ice on Monday? Enter the number in the box.":["280",0,"math"],
