@@ -77,10 +77,10 @@ $x = check_login($con);
 
 <ul>
             <li style="--clr:#00ade1">
-                <a href="https://cslab.kenyon.edu/class/ssd/Game1/MainGame" data-text="&nbsp;Play">&nbsp;Play&nbsp;</a>
+                <a href="./index.php" data-text="&nbsp;Play">&nbsp;Play&nbsp;</a>
             </li>
             <li style="--clr:#fcf86a">
-                <a href="https://cslab.kenyon.edu/class/ssd/Game1/Leaderboard/leaderboard6.php" data-text="&nbsp;Leaderboard">&nbsp;Leaderboard&nbsp;</a>
+                <a href="../Leaderboard/leaderboard6.php" data-text="&nbsp;Leaderboard">&nbsp;Leaderboard&nbsp;</a>
             </li>
             <!-- <li style="--clr:#ffdd1c">
                 <a href="" data-text="&nbsp;Challenges">&nbsp;Challenges&nbsp;</a>

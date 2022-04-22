@@ -22,7 +22,7 @@ session_start();
   $convertmonthQuery = mysqli_query($con, $monthlyQuery);
   $convertallQuery = mysqli_query($con, $alltimeQuery);
 
-  $coinsforQ = 20;
+  $coinsforQ = 10;
 
   $avcolor1 = '1'; //must be between 0 & 1 (inclusive, i think)
   $avcolor2 = '1';
@@ -98,8 +98,12 @@ html{
       display: block
     }
 
-    .swal2-modal .swal2-radio label {
+    /* .swal2-modal .swal2-radio label {
       margin-left: 0px !important;
+    } */
+
+    .swal-wide{
+      width:850px !important;
     }
 
   }
@@ -298,7 +302,32 @@ function entertrigger (event) {
 }, function(t, e, s) {}, function(t, e, s) {
     /* console.log("hey"); */
     var questionBank = {
-      "What is 2+2?" : ["4",0,"math"],
+      "If a historical event happened in the year 1022 CE, how many years ago was this event?": ["1000", 0, "history"],
+      "In this form of government, the people have a say in how the government is run.": ["b", 1, "social studies", "A. dictatorship", "B. democracy", "C. monarchy", "D. colonialism"],
+      "Fill in the blank: A dictatorship is a form of government in which a person or a small group rules with almost unlimited _____.": ["c", 1, "social studies", "A. money", "B. resources", "C. power", "D. time"],
+      "What language was NOT introduced in the Americas as a result of European exploration and colonization?": ["c", 1, "social studies", "A. Spanish", "B. English", "C. Russian", "D. French"],
+      "Fill in the blank: The four early civilizations in the Americas were the Mayan, the Mississipian, the Aztec, and the _____": ["Inca", 0, "social studies"],
+      "Fill in the blank: Latitude and ______ can be used to determine locations on a map": ["longitude", 0, "social science"],
+      "A student views an object in a mirror. Light moves from the ____ to the ____ to the ____.": ["c", 1, "physics", "A. eyes; mirror; object", "B. eyes; object; mirror", "C. object; mirror; eyes", "D. mirror; object; eyes"],
+      "What statement below can explain why seasons change on Earth?": ["a", 1, "space", "A. The earth’s axis is tilted", "B. The distance from Earth to the moon changes", "C. The amount of heat given off by the sun changes throughout the year", "D. The earth has a round shape"],
+      "Hummingbirds feed on the nectar of flowering plants. In this process, they also pollinate the plants. Which symbiotic relationship does this represent?": ["c", 1, "nature", "A. commensalism", "B. predator-prey", "C. mutualism", "D. parasitism"],
+      "Light is sometimes reflected when it strikes an object. Which behavior of sound is similar to light being reflected?": ["a", 1, "science", "A. echoing off a cliff", "B. being absorbed by walls", "C. bending around a building", "D. traveling through air"],
+      "Ticks live on the zebras’ skin and feed off their blood. These ticks can cause infection and spread disease. Which word describes the relationship between zebras and ticks?": ["c", 1, "nature", "A. Predator-prey", "B. Mutualism", "C. Parasitism", "D. Commensalism"],
+      "This object in our solar system is small, cold, and it orbits around a planet. This object is a ____": ["moon", 0, "space"],
+      "It’s currently daytime at Mount Vernon. In 12 hours, it would be nighttime in Mount Vernon. Why is that?": ["d", 1, "space", "A. Earth is tilted on its axis", "B. Earth has a round shape", "C. Earth orbits around the sun", "D. Earth rotates around its axis"],
+      "Julia stacks books on a skateboard and pushes it down a hall. What can she do that would NOT make the skateboard reach the end of the hall faster?": ["b", 1, "science", "A. push it with greater force", "B. replace one of the books with a heavier book", "C. remove one book from the stack", "D. remove all the books"],
+      "‘As on Earth, space food comes in disposable packages. Astronauts must throw their packages away when they have finished eating.’ <br> What does the word ‘disposable’ suggest about the packages?": ["c", 1, "english", "A. They are inconvenient", "B. They are large", "C. They are used once", "D. They are heavy"],
+      "Erika creates a number pattern. Her first term is 1, and the rule is ‘Multiply by 2’. What is the fourth term in her pattern?": ["8", 0, "math"],
+      "In a coordinate plane, point A is located at (1,1). Point B is 1 unit to the right of point A and 1 unit down. Where is point B located?": ["d", 1, "math", "A. (2,2)", "B. (1,0)", "C. (2,1)", "D. (2,0)"],
+      "Given the expression 12+24. Select the expression that is NOT equivalent to the given expression": ["b", 1, "math", "A. 3(4+8)", "B. 0(12+24)", "C. 0+(12+24)", "D. 4(3+6)"],
+      "What number below rounds to 82?": ["c", 1, "math", "A. 82.65", "B. 82.50", "C. 81.56", "D. 83.0001"],
+      "A large cube has a volume of 216 cubic meters. It is completely filled with smaller cubes, each with a volume of 8 cubic meters. How many smaller cubes are in the large cube?": ["27", 0, "math"],
+      "The area of Keiko's backyard is 6 acres. She plants a garden that takes up a third of the backyard. What is the area of Keiko's garden?": ["b", 1, "math", "A. 3 acres", "B. 2 acres", "C. 6 acres", "D. 1 acre"],
+      "0.5 x 24 = ?": ["12", 0, "math"],
+      "How many times is 5 greater than 0.05?": ["100", 0, "math"],
+      "What property below is NOT shared by all squares and trapezoids?": ["d", 1, "math", "A. have 4 sides", "B. have 4 angles", "C. have at least 1 pair of parallel sides", "D. have two acute angles"],
+      "What expression below has a value less than 1,000?": ["c", 1, "math", "A. 1,000 x 1", "B. 1,000 x 1.25", "C. 1,000 x 0.25", "D. 500 x 2"],
+      /* "What is 2+2?" : ["4",0,"math"],
       "One night while camping, a student observes that the moon and stars appear to move across the sky. Which statement describes why the moon and stars appear to change position?":["a",1,"space","A. Earth rotates","B. Earth is tilted","C. Earth orbits the sun","D. Earth moves away from the sun"],
       "James bought 5/4 pounds of rice. Which decimal is equivalent to the amount of rice that he bought?":["1.25",0,"math"],
       "What is the smallest planet in the solar system?":["mercury",0,"space"],
@@ -310,7 +339,7 @@ function entertrigger (event) {
       "Fill in the blank: Bees help flowers reproduce by carrying ___ to other flowers.":["pollen",0,"nature"],
       "Mr. Skon has been driving a car at 50 miles per hour for 90 minutes. How many miles has he traveled?":["75",0,"math"],
       "Which of the following is not a carnivore?" : ["c",1,"nature","A. Cougar","B. Snake","C. Giraffe","D. Lion"],
-      "If Earth has an orbital radius of 150 million kilometres, and Mars has an orbital radius of 228 million kilometres, then does Earth have a <b>shorter</b> or <b>longer</b> year than Mars? ":["shorter",0,"space"],
+      "If Earth has an orbital radius of 150 million kilometers, and Mars has an orbital radius of 228 million kilometers, then does Earth have a <b>shorter</b> or <b>longer</b> year than Mars? ":["shorter",0,"space"],
       "A store only sells 20-pound bags of ice. Over the weekend, the store sells 700 bags of ice, making $2,800. On Monday, the store sells 70 bags of ice.<br>How much (in dollars) does the store make selling ice on Monday? Enter the number in the box.":["280",0,"math"],
       "What number below is larger than 32.42?" : ["c",1,"math","A. 32.418","B. 32.399","C. 32.502","D. 31.98"],
       "If a rectangle's area is 3,500 centimeters squared and its length is 100, what is its width? __ cm":["35",0,"math"],
@@ -319,7 +348,7 @@ function entertrigger (event) {
       "Which number rounds to 3.8?" : ["d",1,"math","A. 3.73","B. 3.70","C. 3.87","D. 3.82"],
       "Which of the following organisms operate as decomposers?" : ["a",1,"nature","A. Bacteria","B. Plants","C. Insects","D. Animals"],
       "Which of the following years is furthest back in history?" : ["b",1,"math","A. 100 A.D.","B. 50 B.C.","C. 3 B.C.","D. 18 A.D."],
-      "Which two continents are located completely in the Western Hemisphere?": ["c",1,"social studies","A. Asia and Europe","B. South America and Africa","C. North America and South America","D. Antarctica and Asia"]
+      "Which two continents are located completely in the Western Hemisphere?": ["c",1,"social studies","A. Asia and Europe","B. South America and Africa","C. North America and South America","D. Antarctica and Asia"] */
     };
     const chosenQuestions = [];
 
@@ -1264,7 +1293,7 @@ function entertrigger (event) {
 
                     }
                     if (guessIsCorrect == true){
-                        document.getElementById("CORRECT").innerHTML = "VOILA !!! ";
+                        document.getElementById("CORRECT").innerHTML = "VOIL&Agrave; !!! ";
                         document.getElementById("tryGuess2").innerHTML = "<button type='submit' class ='decorateButton' id='FINALWINDOW' onclick='swal.close()' style = 'background-color: #4CAF50;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;'><b>RESUME GAME!</b></button>";
                         document.getElementById("FINALWINDOW").addEventListener("click",function(){continueGame=1;});
                         randomlySelectedWord = "";
@@ -1372,7 +1401,7 @@ function entertrigger (event) {
                             closeOnConfirm: false,
 
                             title: '<strong><u>Time for a question!</u></strong>',
-                            padding: '2.2em',
+                            padding: '2.2em 20px',
                             allowOutsideClick: false,
                             allowEnterKey: false,
 
