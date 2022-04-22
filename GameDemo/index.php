@@ -22,7 +22,7 @@ session_start();
   $convertmonthQuery = mysqli_query($con, $monthlyQuery);
   $convertallQuery = mysqli_query($con, $alltimeQuery);
 
-  $coinsforQ = 10;
+  $coinsforQ = 20;
 
   $avcolor1 = '1'; //must be between 0 & 1 (inclusive, i think)
   $avcolor2 = '1';
@@ -106,17 +106,18 @@ html{
       width:850px !important;
     }
 
-    .MCanswer{
-      border: 1px solid;
-      float: left;
-      width:150px;
-      height:150px;
-      margin-left:3px;
-      margin-right:3px;
-    }
+    /* .MCanswer{
+      vertical-align: left;
+      margin: 10px;
+    } */
+
 
 
   }
+  /* input { float: left; width: 50px; }
+  label { margin: 0px 0px 0px 10px; float: left; } */
+
+
 h2{line-height:30px}h2,
 h3{font-size:18px}
 h3{height:40px}
@@ -174,7 +175,7 @@ i{position:absolute;display:block;top:12px;width:32px;line-height:32px;font-size
 
   <div id = "COINSCORE"> </div>
   <div id="ctrl"><h3>SPUTNIK</h3>
-    <div style="position:absolute;bottom: 100px"><a href="./menu.php"> MAIN MENU </a></div>
+    <div style="position:absolute;bottom: 550px"><a href="./menu.php"> MAIN MENU </a></div>
 
       <div><h3></h3>
         <a id="prev">&lt;</a>
@@ -1446,9 +1447,7 @@ function entertrigger (event) {
                             inputOptions: inputOptions, */
 
                             html: "<p id = 'question'> </p>" +
-                            "<div class='MCanswer'><input type='radio' id='answer_a' name='MC' value='a' checked> <label for='a' id = 'answerA'> </label><br><input type='radio' id='answer_b' name='MC' value='b'> <label for='b' id = 'answerB'> </label></div>" +
-                            "<div class='MCanswer'><input type='radio' id='answer_c' name='MC' value='c'> <label for='b' id = 'answerC'> </label></div>" +
-                            "<div class='MCanswer'><input type='radio' id='answer_d' name='MC' value='d'> <label for='b' id = 'answerD'> </label></div>" +
+                            "<div class='MCanswer'><input type='radio' id='answer_a' name='MC' value='a' checked> <label for='a' id = 'answerA'> </label><br><input type='radio' id='answer_b' name='MC' value='b'> <label for='b' id = 'answerB'> </label><br><input type='radio' id='answer_c' name='MC' value='c'> <label for='b' id = 'answerC'> </label><br><input type='radio' id='answer_d' name='MC' value='d'> <label for='b' id = 'answerD'> </label></div>" +
                             "<button type='submit' class ='decorateButton' id='checkanswer' onclick='swal.close()' style = 'background-color: #4CAF50;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;'>SUBMIT</button>",
                             /* inputValidator: (value) => {
                               if (!value) {
