@@ -173,13 +173,15 @@ i{position:absolute;display:block;top:12px;width:32px;line-height:32px;font-size
   </div>
 
   <div id = "COINSCORE"> </div>
-  <div id="ctrl"><h3></h3>
-    <div><h3></h3>
-      <a id="prev">&lt;</a>
-      <a id="play"></a>
-      <a id="next">&gt;</a>
+  <div id="ctrl"><h3>SPUTNIK</h3>
+    <div style="position:absolute;bottom: 100px"><a href="./menu.php"> MAIN MENU </a></div>
+
+      <div><h3></h3>
+        <a id="prev">&lt;</a>
+        <a id="play" class="">PLAY</a>
+        <a id="next">&gt;</a>
+      </div>
     </div>
-  </div>
 
     <div>
       <!-- <i class="fa-solid fa-expand" id="fs" title="Fullscreen"></i> -->
