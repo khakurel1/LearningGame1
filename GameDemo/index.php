@@ -321,6 +321,8 @@ function entertrigger (event) {
       "Which of the following years is furthest back in history?" : ["b",1,"math","A. 100 A.D.","B. 50 B.C.","C. 3 B.C.","D. 18 A.D."],
       "Which two continents are located completely in the Western Hemisphere?": ["c",1,"social studies","A. Asia and Europe","B. South America and Africa","C. North America and South America","D. Antarctica and Asia"]
     };
+    const chosenQuestions = [];
+
     var myAnswer = "";
     var wordBank = {
       math : ["noun", "subject", "arithmetic"],
@@ -1014,6 +1016,7 @@ function entertrigger (event) {
 
 
             play() {
+                const chosenQuestions = [];
                 document.getElementById("COINSCORE").classList.remove("displayCoinCount");
                 var myAnswer="";
                 hmscore=0;
@@ -1323,9 +1326,19 @@ function entertrigger (event) {
                 console.log("questionCount",this.questionCount);
                 if (this.questionCount<wordLength){ /* the order of these two if statements seems not ideal, but if you switch them the game glitches every time you collect a coin*/
 
-                    if (this.mycoins % <?php echo strval($coinsforQ) ?> == 0){
+                    if (this.mycoins % <?php echo strval($coinsforQ)?> == 0){
                         /* get a random integer from 0 to length(questionBank)-1 (index of last question) */
                         var randomQNumber = Math.floor(Math.random()*(Object.keys(questionBank).length));
+
+
+
+                        while (chosenQuestions.includes(randomQNumber) == true){
+                          randomQNumber = Math.floor(Math.random()*(Object.keys(questionBank).length));
+
+                        }
+
+                        chosenQuestions.push(randomQNumber);
+
                         console.log("randomQNumber",randomQNumber);
                         /* get quesiton (key) */
                         myQuestion = (Object.keys(questionBank)[randomQNumber]);
