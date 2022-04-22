@@ -106,6 +106,16 @@ html{
       width:850px !important;
     }
 
+    .MCanswer{
+      border: 1px solid;
+      float: left;
+      width:150px;
+      height:150px;
+      margin-left:3px;
+      margin-right:3px;
+    }
+
+
   }
 h2{line-height:30px}h2,
 h3{font-size:18px}
@@ -126,6 +136,7 @@ i{position:absolute;display:block;top:12px;width:32px;line-height:32px;font-size
   a.disabled{color:#999}.cyan{color:#2ff}.pink{color:#f2f}.red{color:#f22}.end #ctrl,.play #ctrl,.play a{visibility:hidden}.end #quest,.play #quest{visibility:visible}.play #quest{opacity:0;transition:opacity 1s;transition-delay:2.5s}.play table{display:none}*{-webkit-tap-highlight-color:rgba(0,0,0,0);-webkit-touch-callout:none;user-select:none}</style></head>
 <body>
 
+/* url('img_girl.jpg'); */
   <ul id="planet">
   <li>SPACE</li>
   <li style="background-image:radial-gradient(circle at 50% 100%, #632, #964 30%, #c96 40%, #000 40%)">PLUTO</li>
@@ -135,26 +146,30 @@ i{position:absolute;display:block;top:12px;width:32px;line-height:32px;font-size
   <li style="background-image:radial-gradient(circle at 50% 100%, #420, #641 60%, #852 70%, #420 71%, #000 75%)">
   JUPITER</li>
   <li style="background-image:radial-gradient(circle at 50% 100%, #300, #510 35%, #630 45%, #310 46%, #000 48%)">MARS</li>
-  <li style="background-image:radial-gradient(circle at 50% 100%, #222, #555 30%, #666 40%, #000 40%)">MOON</li></ul><canvas id="game" width="192" height="192"></canvas><div id="hud">
+  <li style="background-image:radial-gradient(circle at 50% 100%, #222, #555 30%, #666 40%, #000 40%)">MOON</li>
+  </ul>
+  <canvas id="game" width="192" height="192"></canvas>
 
-  <div></div>
+  <div id="hud">
+      <div>
+      </div>
 
-  <div id="quest"><h4 class="title"></h4>
-      <h4></h4><h4></h4>
-      <table>
-        <tr><th>Distance traveled</th><td></td></tr>
-        <tr><th>Correct question answers</th><td></td></tr><tr>
-        <th>Word guessing score</th><td></td></tr>
-        <tr><th>Tokens collected</th><td></td></tr>
-        <tr><th>Big tokens collected</th><td></td></tr>
-        <tr><th>Asteroids destroyed</th><td></td></tr>
-        <tr><th>Places visited</th><td></td></tr>
-        <tr><th>Mission completed</th><td></td></tr>
-        <tr><th class="total">TOTAL</th><td class="total"></td></tr>
-      </table>
-  </div>
+      <div id="quest"><h4 class="title"></h4>
+          <h4></h4><h4></h4>
+          <table>
+            <tr><th>Distance traveled</th><td></td></tr>
+            <tr><th>Correct question answers</th><td></td></tr><tr>
+            <th>Word guessing score</th><td></td></tr>
+            <tr><th>Tokens collected</th><td></td></tr>
+            <tr><th>Big tokens collected</th><td></td></tr>
+            <tr><th>Asteroids destroyed</th><td></td></tr>
+            <tr><th>Places visited</th><td></td></tr>
+            <tr><th>Mission completed</th><td></td></tr>
+            <tr><th class="total">TOTAL</th><td class="total"></td></tr>
+          </table>
+      </div>
 
-  <div><a id="ok">OK</a></div>
+      <div><a id="ok">OK</a></div>
   </div>
 
   <div id = "COINSCORE"> </div>
@@ -333,7 +348,7 @@ function entertrigger (event) {
       "This object in our solar system is small, cold, and it orbits around a planet. This object is a ____": ["moon", 0, "space"],
       "It’s currently daytime at Mount Vernon. In 12 hours, it would be nighttime in Mount Vernon. Why is that?": ["d", 1, "space", "A. Earth is tilted on its axis", "B. Earth has a round shape", "C. Earth orbits around the sun", "D. Earth rotates around its axis"],
       "Julia stacks books on a skateboard and pushes it down a hall. What can she do that would NOT make the skateboard reach the end of the hall faster?": ["b", 1, "science", "A. push it with greater force", "B. replace one of the books with a heavier book", "C. remove one book from the stack", "D. remove all the books"],
-      "‘As on Earth, space food comes in disposable packages. Astronauts must throw their packages away when they have finished eating.’ <br> What does the word ‘disposable’ suggest about the packages?": ["c", 1, "english", "A. They are inconvenient", "B. They are large", "C. They are used once", "D. They are heavy"],
+      "‘As on Earth, space food comes in <b>disposable</b> packages. Astronauts must throw their packages away when they have finished eating.’ <br> What does the word ‘disposable’ suggest about the packages?": ["c", 1, "english", "A. They are inconvenient", "B. They are large", "C. They are used once", "D. They are heavy"],
       "Erika creates a number pattern. Her first term is 1, and the rule is ‘Multiply by 2’. What is the fourth term in her pattern?": ["8", 0, "math"],
       "In a coordinate plane, point A is located at (1,1). Point B is 1 unit to the right of point A and 1 unit down. Where is point B located?": ["d", 1, "math", "A. (2,2)", "B. (1,0)", "C. (2,1)", "D. (2,0)"],
       "Given the expression 12+24. Select the expression that is NOT equivalent to the given expression": ["b", 1, "math", "A. 3(4+8)", "B. 0(12+24)", "C. 0+(12+24)", "D. 4(3+6)"],
@@ -1271,8 +1286,7 @@ function entertrigger (event) {
                       text: 'Keep up the good work!',
                       html : "<button type='button' id='answerIsCorrect' class ='decorateButton' onclick='swal.close()' style = 'background-color: #4CAF50;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;'>BRING IT ON!</button>",
                       showConfirmButton: false,
-                      allowOutsideClick: false,
-                      closeOnEsc: false
+                      allowOutsideClick: false
                     });
                     correctAnswers = correctAnswers + 1; // NUMBER OF CORRECT ANSWERS THE USER GETS
           qsscore = qsscore + 100;
@@ -1285,7 +1299,6 @@ function entertrigger (event) {
                      html : "<div id ='showCorrectAnswer'> </div><br>" + "<button type='button' class ='decorateButton' id='answerIsIncorrect' onclick='swal.close()' style = 'background-color: #4CAF50;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;'>NO WORRIES!</button>",
                      showConfirmButton: false,
                      allowOutsideClick: false,
-                     closeOnEsc: false,
                      /* onClose: this.resumegamewithdelay */
                     });
                     document.getElementById('showCorrectAnswer').innerHTML = "The correct answer is <b>" + String(longCorrectAnswer.toUpperCase()) + "</b>"
@@ -1419,11 +1432,8 @@ function entertrigger (event) {
                           jQuery(".confirm").attr('disabled', 'disabled');
 
                           Swal.fire({
-                            buttons: false,
                             showCancelButton: false,
                             showConfirmButton: false,
-                            closeOnClickOutside: false,
-                            closeOnConfirm: false,
 
                             title: '<strong><u>Time for a question!</u></strong>',
                             padding: '2.2em 20px',
@@ -1434,10 +1444,9 @@ function entertrigger (event) {
                             inputOptions: inputOptions, */
 
                             html: "<p id = 'question'> </p>" +
-                            "<div><input type='radio' id='answer_a' name='MC' value='a' checked> <label for='a' id = 'answerA'> </label></div>" +
-                            "<div><input type='radio' id='answer_b' name='MC' value='b'> <label for='b' id = 'answerB'> </label></div>" +
-                            "<div><input type='radio' id='answer_c' name='MC' value='c'> <label for='b' id = 'answerC'> </label></div>" +
-                            "<div><input type='radio' id='answer_d' name='MC' value='d'> <label for='b' id = 'answerD'> </label></div>" +
+                            "<div class='MCanswer'><input type='radio' id='answer_a' name='MC' value='a' checked> <label for='a' id = 'answerA'> </label><br><input type='radio' id='answer_b' name='MC' value='b'> <label for='b' id = 'answerB'> </label></div>" +
+                            "<div class='MCanswer'><input type='radio' id='answer_c' name='MC' value='c'> <label for='b' id = 'answerC'> </label></div>" +
+                            "<div class='MCanswer'><input type='radio' id='answer_d' name='MC' value='d'> <label for='b' id = 'answerD'> </label></div>" +
                             "<button type='submit' class ='decorateButton' id='checkanswer' onclick='swal.close()' style = 'background-color: #4CAF50;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;'>SUBMIT</button>",
                             /* inputValidator: (value) => {
                               if (!value) {
@@ -1455,11 +1464,8 @@ function entertrigger (event) {
                             /*swal has built-in confirm and cancel buttons. the following line attempts to assign ids to them*/
                             /* onOpen: function() { jQuery('.swal2-confirm').attr('id','btnConfirm'); jQuery('.swal2-cancel').attr('id','btnCancel');} */
 
-
-                            buttons: false,
                             showCancelButton: false,
                             showConfirmButton: false,
-                            closeOnClickOutside: false
 
                             /*end swal*/
                             }).then( (result) => {
