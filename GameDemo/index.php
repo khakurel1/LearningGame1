@@ -136,7 +136,9 @@ i{position:absolute;display:block;top:12px;width:32px;line-height:32px;font-size
   JUPITER</li>
   <li style="background-image:radial-gradient(circle at 50% 100%, #300, #510 35%, #630 45%, #310 46%, #000 48%)">MARS</li>
   <li style="background-image:radial-gradient(circle at 50% 100%, #222, #555 30%, #666 40%, #000 40%)">MOON</li></ul><canvas id="game" width="192" height="192"></canvas><div id="hud">
+
   <div></div>
+
   <div id="quest"><h4 class="title"></h4>
       <h4></h4><h4></h4>
       <table>
@@ -151,6 +153,7 @@ i{position:absolute;display:block;top:12px;width:32px;line-height:32px;font-size
         <tr><th class="total">TOTAL</th><td class="total"></td></tr>
       </table>
   </div>
+
   <div><a id="ok">OK</a></div>
   </div>
 
@@ -166,6 +169,7 @@ i{position:absolute;display:block;top:12px;width:32px;line-height:32px;font-size
     <div>
       <!-- <i class="fa-solid fa-expand" id="fs" title="Fullscreen"></i> -->
       <i id="sfx" title="Audio"></i></div>
+
     <div id="load">
       <div><h1>SPACECRAFT</h1></div>
       <div>
@@ -186,11 +190,17 @@ i{position:absolute;display:block;top:12px;width:32px;line-height:32px;font-size
           Use <b>BOOST</b> to destroy <b class="cyan">ASTEROIDS</b>.
         </p>
       </div>
-      <div><a id="start">START</a></div><div><a id="mainmenu" href="./menu.php">MAIN MENU</a></div>
+      <div><a id="start">START</a></div>
+      <div><a id="mainmenu" href="./menu.php">MAIN MENU</a></div>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type = "text/javascript">
+
+
+
+
+
 
 function ajaxCall(thisroundscore){
     /* fetch current leaderboard scores for this user*/
@@ -239,7 +249,7 @@ function entertrigger (event) {
     event.preventDefault();
     document.getElementById("checkanswer").click();
 
-    document.removeEventListener("keyup", entertrigger, true);
+    /* document.removeEventListener("keyup", entertrigger, true); */
   }
 }
 
@@ -302,6 +312,13 @@ function entertrigger (event) {
 }, function(t, e, s) {}, function(t, e, s) {
     /* console.log("hey"); */
     var questionBank = {
+      "During the early 1900s, which part of the world did most Ohio immigrants come from?": ["c", 1, "social studies", "A. Asia", "B. Africa", "C. Europe", "D. South America"],
+      "Mark and his family were traveling from Columbus, Ohio to Cleveland, Ohio. What direction did they travel?": ["a", 1, "social studies", "A. North-east", "B. South", "C. Southwest", "D. North-west"],
+      "Which of the following states does NOT share a border with Ohio?": ["c", 1, "social studies", "A. Kentucky", "B. Pennsylvania", "C. Virginia", "D. West Virginia"],
+      "Fill in the blank: The War of 1812 was fought by the United States, the American Indians, and the _____": ["a", 1, "history", "A. Great Britain", "B. French", "C. Spanish", "D. Portuguese"],
+      "Dasha's grandfather has decided to become an American citizen. What will be one of his new responsibilities as a U.S. citizen?": ["c", 1, "social studies", "A. to enlist in the U.S. military", "B. to go to a U.S. college", "C. to serve on a jury", "D. to have at least 10 American friends"],
+      "Fill in the blank: The U.S. Constitution provides a framework that ____ the powers of government.": ["d", 1, "social studies", "A. removes", "B. increases", "C. abolishes", "D. limits"],
+      "If a historical event happened in the year 1022 CE, how many years ago was this event?": ["1000", 0, "history"],
       "If a historical event happened in the year 1022 CE, how many years ago was this event?": ["1000", 0, "history"],
       "In this form of government, the people have a say in how the government is run.": ["b", 1, "social studies", "A. dictatorship", "B. democracy", "C. monarchy", "D. colonialism"],
       "Fill in the blank: A dictatorship is a form of government in which a person or a small group rules with almost unlimited _____.": ["c", 1, "social studies", "A. money", "B. resources", "C. power", "D. time"],
@@ -327,7 +344,7 @@ function entertrigger (event) {
       "How many times is 5 greater than 0.05?": ["100", 0, "math"],
       "What property below is NOT shared by all squares and trapezoids?": ["d", 1, "math", "A. have 4 sides", "B. have 4 angles", "C. have at least 1 pair of parallel sides", "D. have two acute angles"],
       "What expression below has a value less than 1,000?": ["c", 1, "math", "A. 1,000 x 1", "B. 1,000 x 1.25", "C. 1,000 x 0.25", "D. 500 x 2"],
-      /* "What is 2+2?" : ["4",0,"math"],
+      "What is 2+2?" : ["4",0,"math"],
       "One night while camping, a student observes that the moon and stars appear to move across the sky. Which statement describes why the moon and stars appear to change position?":["a",1,"space","A. Earth rotates","B. Earth is tilted","C. Earth orbits the sun","D. Earth moves away from the sun"],
       "James bought 5/4 pounds of rice. Which decimal is equivalent to the amount of rice that he bought?":["1.25",0,"math"],
       "What is the smallest planet in the solar system?":["mercury",0,"space"],
@@ -348,11 +365,12 @@ function entertrigger (event) {
       "Which number rounds to 3.8?" : ["d",1,"math","A. 3.73","B. 3.70","C. 3.87","D. 3.82"],
       "Which of the following organisms operate as decomposers?" : ["a",1,"nature","A. Bacteria","B. Plants","C. Insects","D. Animals"],
       "Which of the following years is furthest back in history?" : ["b",1,"math","A. 100 A.D.","B. 50 B.C.","C. 3 B.C.","D. 18 A.D."],
-      "Which two continents are located completely in the Western Hemisphere?": ["c",1,"social studies","A. Asia and Europe","B. South America and Africa","C. North America and South America","D. Antarctica and Asia"] */
+      "Which two continents are located completely in the Western Hemisphere?": ["c",1,"social studies","A. Asia and Europe","B. South America and Africa","C. North America and South America","D. Antarctica and Asia"]
     };
     const chosenQuestions = [];
 
-    var myAnswer = "";
+    var currentCorrectAnswer = "";
+    var longCorrectAnswer = "";
     var wordBank = {
       math : ["noun", "subject", "arithmetic"],
       giraffe : ["noun", "animal", "neck"],
@@ -1047,7 +1065,7 @@ function entertrigger (event) {
             play() {
                 const chosenQuestions = [];
                 document.getElementById("COINSCORE").classList.remove("displayCoinCount");
-                var myAnswer="";
+                var currentCorrectAnswer="";
                 hmscore=0;
                 qsscore=0;
                 hangmanWord="";  // PARTIAL GUESS WORD
@@ -1224,23 +1242,28 @@ function entertrigger (event) {
             }
 
             checkAnswer(){
-              document.removeEventListener("keyup", entertrigger, true);
-
 
               console.log("checkAnswer started");
                 continueGame=0;
-                if (questionBank[myQuestion][1]){
-                  let enteredAnswer1 = jQuery('input[name=swal2-radio]:checked').val();
-                  if (enteredAnswer1 == undefined){enteredAnswer1='0';console.log("enteredAnswer1_undef",enteredAnswer1);}
-                  var enteredAnswer = enteredAnswer1;
-                  console.log("enteredAnswer",enteredAnswer);
+                if (questionBank[myQuestion][1]){ /*if multiple choice Q...*/
+                  /* let enteredAnswer1 = jQuery('input[name=swal2-radio]:checked').val();
+                  if (enteredAnswer1 == undefined){enteredAnswer1='0';console.log("enteredAnswer1_undef",enteredAnswer1);} */
+                  var getSelectedValue = document.querySelector( 'input[name="MC"]:checked' );
+                  if(getSelectedValue != null) {
+                    var enteredAnswer = getSelectedValue.value;
+                  }
+                  else{enteredAnswer='0';}
                 }
-                else {var enteredAnswer = document.getElementById("answer").value;}
+                else {
+                  var enteredAnswer = document.getElementById("answer").value;
+                }
 
-                if (enteredAnswer == undefined){enteredAnswer='0';console.log("enteredAnswer_undef",enteredAnswer);}
                 var newstring = enteredAnswer.trim().toLowerCase()
+                if (enteredAnswer == undefined){enteredAnswer='0';console.log("enteredAnswer_undef",enteredAnswer);}
 
-                if (newstring==myAnswer){
+                console.log("entered answer",newstring);
+
+                if (newstring==currentCorrectAnswer){
 
                     Swal.fire({
                       icon: 'success',
@@ -1258,14 +1281,14 @@ function entertrigger (event) {
                 else{
                     Swal.fire({
                      icon: 'error',
-                     title: 'Uh oh...',
+                     title: 'Not quite...',
                      html : "<div id ='showCorrectAnswer'> </div><br>" + "<button type='button' class ='decorateButton' id='answerIsIncorrect' onclick='swal.close()' style = 'background-color: #4CAF50;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;'>NO WORRIES!</button>",
                      showConfirmButton: false,
                      allowOutsideClick: false,
                      closeOnEsc: false,
                      /* onClose: this.resumegamewithdelay */
                     });
-                    document.getElementById('showCorrectAnswer').innerHTML = "The correct answer is <b>" + String(myAnswer.toUpperCase()) + "</b>"
+                    document.getElementById('showCorrectAnswer').innerHTML = "The correct answer is <b>" + String(longCorrectAnswer.toUpperCase()) + "</b>"
                     document.getElementById('answerIsIncorrect').addEventListener("click", function(){setTimeout(function(){continueGame=1;}, 500);});
                 }
             }
@@ -1373,23 +1396,25 @@ function entertrigger (event) {
                         myQuestion = (Object.keys(questionBank)[randomQNumber]);
                         console.log("myQuestion",myQuestion);
                         /* get answer (value corresponding to that key) */
-                        myAnswer = questionBank[myQuestion][0];
-                        /* console.log("myAnswer",myAnswer); */
+                        currentCorrectAnswer = questionBank[myQuestion][0];
+                        /* console.log("currentCorrectAnswer",currentCorrectAnswer); */
+                        longCorrectAnswer = questionBank[myQuestion][0];
+                        /* console.log("longCorrectAnswer",longCorrectAnswer); */
                         this.questionCount=this.questionCount + 1;
                         continueGame=0;
+
 
                         /* multiple choice */
                         if (questionBank[myQuestion][1]){
                           /* inputOptions can be an object or Promise */
-                          /* inputOptions can be an object or Promise*/
-                          var inputOptions = new Promise(function(resolve) {
+                          /* var inputOptions = new Promise(function(resolve) {
                               resolve({
                                 'a': questionBank[myQuestion][3],
                                 'b': questionBank[myQuestion][4],
                                 'c': questionBank[myQuestion][5],
                                 'd': questionBank[myQuestion][6]
                               });
-                          });
+                          }); */
 
                           jQuery(".confirm").attr('disabled', 'disabled');
 
@@ -1405,10 +1430,14 @@ function entertrigger (event) {
                             allowOutsideClick: false,
                             allowEnterKey: false,
 
-                            input: 'radio',
-                            inputOptions: inputOptions,
+                            /* input: 'radio',
+                            inputOptions: inputOptions, */
 
                             html: "<p id = 'question'> </p>" +
+                            "<div><input type='radio' id='answer_a' name='MC' value='a' checked> <label for='a' id = 'answerA'> </label></div>" +
+                            "<div><input type='radio' id='answer_b' name='MC' value='b'> <label for='b' id = 'answerB'> </label></div>" +
+                            "<div><input type='radio' id='answer_c' name='MC' value='c'> <label for='b' id = 'answerC'> </label></div>" +
+                            "<div><input type='radio' id='answer_d' name='MC' value='d'> <label for='b' id = 'answerD'> </label></div>" +
                             "<button type='submit' class ='decorateButton' id='checkanswer' onclick='swal.close()' style = 'background-color: #4CAF50;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;'>SUBMIT</button>",
                             /* inputValidator: (value) => {
                               if (!value) {
@@ -1416,28 +1445,25 @@ function entertrigger (event) {
                               }
                             }, */
 
+                            /* submit via enter key anywhere. calls on a global function.) */
+                            /* onOpen: function(){document.addEventListener("keyup", entertrigger, true);}, */
+
+                            onOpen: function() {document.getElementById("answer_a").focus();},
+
                             confirmButtonText: "don't click this",
                             confirmButtonColor: '#e00000',
-                            /*swal has built-in confirm and cancel buttons. the following line assigns ids to them*/
+                            /*swal has built-in confirm and cancel buttons. the following line attempts to assign ids to them*/
                             /* onOpen: function() { jQuery('.swal2-confirm').attr('id','btnConfirm'); jQuery('.swal2-cancel').attr('id','btnCancel');} */
 
-
-                            /* submit via submit button click (listen for enter here. calls on a global function.) */
-                            onOpen: function(){document.addEventListener("keyup", entertrigger, true);},
 
                             buttons: false,
                             showCancelButton: false,
                             showConfirmButton: false,
-                            closeOnClickOutside: false,
+                            closeOnClickOutside: false
 
                             /*end swal*/
                             }).then( (result) => {
-                              document.removeEventListener("keyup", function(event) {
-                                if (event.keyCode === 13) {
-                                  event.preventDefault();
-                                  document.getElementById("checkanswer").click();
-                                }
-                              });
+                              /* document.removeEventListener("keyup", entertrigger, true); */
                               this.checkAnswer;
                               /* let answerr = jQuery('input[name=swal2-radio]:checked').val();
                               console.log('answerr:', answerr);
@@ -1446,53 +1472,64 @@ function entertrigger (event) {
                             })
                             ;
 
-                            /* submit via submit button click */
-                            document.getElementById("checkanswer").addEventListener("click", console.log("clicked"));
-                            document.getElementById("checkanswer").addEventListener("click", this.checkAnswer);
-                            /* submit via enter key */
-                            /* document.addEventListener("keyup", function(event) {
-                              if (event.keyCode === 13) {
-                                event.preventDefault();
-                                document.getElementById("checkanswer").click();}
-                            }); */
+                          /* submit via submit button click */
+                          document.getElementById("checkanswer").addEventListener("click", console.log("clicked"));
+                          document.getElementById("checkanswer").addEventListener("click", this.checkAnswer);
+                          /* submit via enter key when answer is selected */
+                          document.getElementById("answer_a").addEventListener("keyup", entertrigger, true);
+                          document.getElementById("answer_b").addEventListener("keyup", entertrigger, true);
+                          document.getElementById("answer_c").addEventListener("keyup", entertrigger, true);
+                          document.getElementById("answer_d").addEventListener("keyup", entertrigger, true);
 
 
-                            /* jQuery(document).on("click",".swal2-container input[name='swal2-radio']", function() {
-                                var id = jQuery('input[name=swal2-radio]:checked').val();
-                                console.log('id: ' + id);
-                            }); */
-                            /* inputValidator: (value) => { /* should value be result?*/
-                              /* return new Promise(function(resolve, reject) {
-                                if (value) {
-                                  resolve();
-                                } else {
-                                  reject('You need to select something!');
-                                } */
-                              /* }); */
-                            /* }; */
-                            /* document.getElementById("btnConfirm").addEventListener("click", this.checkAnswer);
-                            /* submit via enter key in answer field */
-                            /* document.addEventListener("keyup", function(event) { */
-                              /* if (event.keyCode === 13) {
-                                event.preventDefault();
-                                document.getElementById("btnConfirm").click();} */
-                              /* }); */
-
-                            document.getElementById("question").innerHTML = myQuestion;
-
-
+                          /* jQuery(document).on("click",".swal2-container input[name='swal2-radio']", function() {
+                              var id = jQuery('input[name=swal2-radio]:checked').val();
+                              console.log('id: ' + id);
+                          }); */
+                          /* inputValidator: (value) => { /* should value be result?*/
+                            /* return new Promise(function(resolve, reject) {
+                              if (value) {
+                                resolve();
+                              } else {
+                                reject('You need to select something!');
+                              } */
+                            /* }); */
+                          /* }; */
+                          /* document.getElementById("btnConfirm").addEventListener("click", this.checkAnswer);
+                          /* submit via enter key in answer field */
+                          /* document.addEventListener("keyup", function(event) { */
+                            /* if (event.keyCode === 13) {
+                              event.preventDefault();
+                              document.getElementById("btnConfirm").click();} */
+                            /* }); */
 
                           document.getElementById("question").innerHTML = myQuestion;
-
-                          jQuery(document).on("click",".swal2-container input[name='swal2-radio']",
-                            function() {
-                            	var id = jQuery('input[name=swal2-radio]:checked').val();
-                            	console.log('id: ' + id);
-                              }
-                          );
+                          document.getElementById("answerA").innerHTML = questionBank[myQuestion][3];
+                          document.getElementById("answerB").innerHTML = questionBank[myQuestion][4];
+                          document.getElementById("answerC").innerHTML = questionBank[myQuestion][5];
+                          document.getElementById("answerD").innerHTML = questionBank[myQuestion][6];
 
 
+                        /* jQuery(document).on("click",".swal2-container input[name='swal2-radio']",
+                          function() {
+                          	var id = jQuery('input[name=swal2-radio]:checked').val();
+                          	console.log('id: ' + id);
+                            }
+                        ); */
 
+
+                          if(currentCorrectAnswer=='a'){
+                            longCorrectAnswer = questionBank[myQuestion][3];
+                          }
+                          else if(currentCorrectAnswer=='b'){
+                            longCorrectAnswer = questionBank[myQuestion][4];
+                          }
+                          else if(currentCorrectAnswer=='c'){
+                            longCorrectAnswer = questionBank[myQuestion][5];
+                          }
+                          else if(currentCorrectAnswer=='d'){
+                            longCorrectAnswer = questionBank[myQuestion][6];
+                          }
 
                         }
 
