@@ -22,7 +22,7 @@ session_start();
   $convertmonthQuery = mysqli_query($con, $monthlyQuery);
   $convertallQuery = mysqli_query($con, $alltimeQuery);
 
-  $coinsforQ = 20;
+  $coinsforQ = 25;
 
   $avcolor1 = '1'; //must be between 0 & 1 (inclusive, i think)
   $avcolor2 = '1';
@@ -32,7 +32,7 @@ session_start();
 <!DOCTYPE html>
 <html lang="en"><head>
 
-  <title>SPACECRAFT</title>
+  <title>VASA-Wiggin SpaceDash</title>
   <meta charset="UTF-8">
   meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -114,8 +114,8 @@ html{
 
 
   }
-  /* input { float: left; width: 50px; }
-  label { margin: 0px 0px 0px 10px; float: left; } */
+  /* MC answer labels style */
+  /* label { margin: 0px 0px 0px 0px; float: left;} */
 
 
 h2{line-height:30px}h2,
@@ -139,15 +139,15 @@ i{position:absolute;display:block;top:12px;width:32px;line-height:32px;font-size
 
 /* url('img_girl.jpg'); */
   <ul id="planet">
-  <li>SPACE</li>
-  <li style="background-image:radial-gradient(circle at 50% 100%, #632, #964 30%, #c96 40%, #000 40%)">PLUTO</li>
-  <li style="background-image:radial-gradient(circle at 50% 100%, #013, #025 48%, #046 58%, #013 59%, #000 61%)">NEPTUNE</li>
-  <li style="background-image:radial-gradient(circle at 50% 100%, #133, #255 50%, #466 60%, #133 61%, #000 63%)">URANUS</li>
-  <li style="background-image:radial-gradient(circle at 50% 100%, #320, #651 50%, #973 60%, #320 61%, #000 63%, #000 73%, #333 75%, #333 88%, #000 90%)">SATURN</li>
-  <li style="background-image:radial-gradient(circle at 50% 100%, #420, #641 60%, #852 70%, #420 71%, #000 75%)">
+  <li style="background-image:url('../Photos/Earth.jpg')">SPACE</li>
+  <li style="background-image:url('../Photos/Pluto2.jpg')">PLUTO</li>
+  <li style="background-image:url('../Photos/Neptune.jpg')">NEPTUNE</li>
+  <li style="background-image:url('../Photos/Uranus.jpg')">URANUS</li>
+  <li style="background-image:url('../Photos/Saturn.jpg')">SATURN</li>
+  <li style="background-image:url('../Photos/Jupiter.jpg')">
   JUPITER</li>
-  <li style="background-image:radial-gradient(circle at 50% 100%, #300, #510 35%, #630 45%, #310 46%, #000 48%)">MARS</li>
-  <li style="background-image:radial-gradient(circle at 50% 100%, #222, #555 30%, #666 40%, #000 40%)">MOON</li>
+  <li style="background-image:url('../Photos/Mars.png')">MARS</li>
+  <li style="background-image:url('../Photos/moon.jpg')">MOON</li>
   </ul>
   <canvas id="game" width="192" height="192"></canvas>
 
@@ -174,8 +174,10 @@ i{position:absolute;display:block;top:12px;width:32px;line-height:32px;font-size
   </div>
 
   <div id = "COINSCORE"> </div>
+
+
   <div id="ctrl"><h3>SPUTNIK</h3>
-    <div style="position:absolute;bottom: 550px"><a href="./menu.php"> MAIN MENU </a></div>
+  <div style="position:absolute; top: 0px; left: 10px"> <a href="./menu.php"> MAIN MENU </a></div>
 
       <div><h3></h3>
         <a id="prev">&lt;</a>
@@ -189,7 +191,7 @@ i{position:absolute;display:block;top:12px;width:32px;line-height:32px;font-size
       <i id="sfx" title="Audio"></i></div>
 
     <div id="load">
-      <div><h1>SPACECRAFT</h1></div>
+      <div><h1>VASA-WIGGIN SPACEDASH</h1></div>
       <div>
         <p id="keys">
           <b>MOVE</b> = <b>LEFT / RIGHT</b> arrow keys<br>
@@ -330,6 +332,18 @@ function entertrigger (event) {
 }, function(t, e, s) {}, function(t, e, s) {
     /* console.log("hey"); */
     var questionBank = {
+      "<em>If you go camping for more than a week, you would make sure you have plenty of food and the <b>gear</b> to cook and eat it with.</em> What is an example of <b>gear</b> in this context?": ["c", 1, "english", "A. a tent", "B. a hammer", "C. a saucepan", "D. a backpack"],
+      "The mass of four boxes are given below: <br> Box A: 4kg <br> Box B: 5kg <br> Box C: 20kg <br> Box D: 6kg <br> Which box requires the smallest force to lift it off the ground?": ["a", 1, "science", "A. Box A", "B. Box B", "C. Box C", "D. Box D"],
+      "Lee rides a bike for 15 minutes at a speed of 16 miles per hour. How far has he gone? ____ miles": ["4", 0, "math"],
+      "Which of these is an agricultural method that the Mayan obtained food?": ["a", 1, "social studies", "A. cutting and burning land to clear fields for planting", "B. picking berries from bushes in the forest", "C. using bows and arrows to hunt animals", "D. getting water from rivers"],
+      /*"Hanukkah is a festival celebrated by _____ people.": ["b", 1, social studies, "A. Christian", "B. Muslim", "C. Jewish", "D. Hindi"],*/
+      "To go from Europe to the United States, people need to cross the _____ Ocean.": ["b", 1, "social studies", "A. Pacific", "B. Atlantic", "C. Indian", "D. Eastern"],
+      "Which U.S. state below does not share a land border with any other U.S. state?": ["c", 1, "social studies", "A. Rhode Island", "B. Florida", "C. Alaska", "D. Delaware"],
+      "Trade happens when people exchange goods and services. Which of the following is an example of a trade?": ["b", 1, "social studies", "A. Tim's father give him a new bike", "B. Joe babysits for a family so he could stay at their house for free", "C. Jane donates her old clothes to the church", "D. Alice picks up 10 dollars on the street"],
+      "Many people around the world celebrate the New Year on January 1. But other people celebrate it on different days. Why is that?": ["c", 1, "social studies", "A. they are confused about what day it is", "B. they want to celebrate in the summer, when it's warmer", "C. they use different calendars", "D. they think celebrating on January 1 is bad luck"],
+      "Fill in the blank: In the beginning, Christopher Columbus thought he could find another route to the Indian Ocean by sailing ____ across the Atlantic Ocean.": ["d", 1, "history", "A. north", "B. south", "C. east", "D. west"],
+      "Fill in the blank: I’m afraid that all the tickets _____ sold when we arrive at the cinema tomorrow.": ["b", 1, "english", "A. were", "B. will have been", "C. had been", "D. are"],
+      "Fill in the blank: By next month, Rick and Morty _____ the house.": ["d", 1, "english", "A. will had furnished", "B. had furnished", "C. furnished", "D. will have furnished"],
       "During the early 1900s, which part of the world did most Ohio immigrants come from?": ["c", 1, "social studies", "A. Asia", "B. Africa", "C. Europe", "D. South America"],
       "Mark and his family were traveling from Columbus, Ohio to Cleveland, Ohio. What direction did they travel?": ["a", 1, "social studies", "A. North-east", "B. South", "C. Southwest", "D. North-west"],
       "Which of the following states does NOT share a border with Ohio?": ["c", 1, "social studies", "A. Kentucky", "B. Pennsylvania", "C. Virginia", "D. West Virginia"],
@@ -337,12 +351,16 @@ function entertrigger (event) {
       "Dasha's grandfather has decided to become an American citizen. What will be one of his new responsibilities as a U.S. citizen?": ["c", 1, "social studies", "A. to enlist in the U.S. military", "B. to go to a U.S. college", "C. to serve on a jury", "D. to have at least 10 American friends"],
       "Fill in the blank: The U.S. Constitution provides a framework that ____ the powers of government.": ["d", 1, "social studies", "A. removes", "B. increases", "C. abolishes", "D. limits"],
       "If a historical event happened in the year 1022 CE, how many years ago was this event?": ["1000", 0, "history"],
-      "If a historical event happened in the year 1022 CE, how many years ago was this event?": ["1000", 0, "history"],
       "In this form of government, the people have a say in how the government is run.": ["b", 1, "social studies", "A. dictatorship", "B. democracy", "C. monarchy", "D. colonialism"],
       "Fill in the blank: A dictatorship is a form of government in which a person or a small group rules with almost unlimited _____.": ["c", 1, "social studies", "A. money", "B. resources", "C. power", "D. time"],
       "What language was NOT introduced in the Americas as a result of European exploration and colonization?": ["c", 1, "social studies", "A. Spanish", "B. English", "C. Russian", "D. French"],
       "Fill in the blank: The four early civilizations in the Americas were the Mayan, the Mississipian, the Aztec, and the _____": ["Inca", 0, "social studies"],
       "Fill in the blank: Latitude and ______ can be used to determine locations on a map": ["longitude", 0, "social science"],
+      "What is 8 x 7 ?": ["56", 0, "math"],
+      "What is 9 x 8 ?": ["72", 0, "math"],
+      "What is 10 x 33 ?": ["330", 0, "math"],
+      "What is 4 x (1 + 2 x 12) ?": ["100", 0, "math"],
+      "What is the first step in the order of operations?": ["d", 1, "social studies", "A. exponents", "B. multiplication", "C. subtraction", "D. parentheses"],
       "A student views an object in a mirror. Light moves from the ____ to the ____ to the ____.": ["c", 1, "physics", "A. eyes; mirror; object", "B. eyes; object; mirror", "C. object; mirror; eyes", "D. mirror; object; eyes"],
       "What statement below can explain why seasons change on Earth?": ["a", 1, "space", "A. The earth’s axis is tilted", "B. The distance from Earth to the moon changes", "C. The amount of heat given off by the sun changes throughout the year", "D. The earth has a round shape"],
       "Hummingbirds feed on the nectar of flowering plants. In this process, they also pollinate the plants. Which symbiotic relationship does this represent?": ["c", 1, "nature", "A. commensalism", "B. predator-prey", "C. mutualism", "D. parasitism"],
@@ -354,7 +372,7 @@ function entertrigger (event) {
       "‘As on Earth, space food comes in <b>disposable</b> packages. Astronauts must throw their packages away when they have finished eating.’ <br> What does the word ‘disposable’ suggest about the packages?": ["c", 1, "english", "A. They are inconvenient", "B. They are large", "C. They are used once", "D. They are heavy"],
       "Erika creates a number pattern. Her first term is 1, and the rule is ‘Multiply by 2’. What is the fourth term in her pattern?": ["8", 0, "math"],
       "In a coordinate plane, point A is located at (1,1). Point B is 1 unit to the right of point A and 1 unit down. Where is point B located?": ["d", 1, "math", "A. (2,2)", "B. (1,0)", "C. (2,1)", "D. (2,0)"],
-      "Given the expression 12+24. Select the expression that is NOT equivalent to the given expression": ["b", 1, "math", "A. 3(4+8)", "B. 0(12+24)", "C. 0+(12+24)", "D. 4(3+6)"],
+      "Select the expression that is NOT equivalent to 12+24": ["b", 1, "math", "A. 3(4+8)", "B. 0(12+24)", "C. 0+(12+24)", "D. 4(3+6)"],
       "What number below rounds to 82?": ["c", 1, "math", "A. 82.65", "B. 82.50", "C. 81.56", "D. 83.0001"],
       "A large cube has a volume of 216 cubic meters. It is completely filled with smaller cubes, each with a volume of 8 cubic meters. How many smaller cubes are in the large cube?": ["27", 0, "math"],
       "The area of Keiko's backyard is 6 acres. She plants a garden that takes up a third of the backyard. What is the area of Keiko's garden?": ["b", 1, "math", "A. 3 acres", "B. 2 acres", "C. 6 acres", "D. 1 acre"],
@@ -1136,7 +1154,7 @@ function entertrigger (event) {
                     h = Math.round(t.distance),
                     c = this.mission(!0) ? 1 : 0;
 
-                i.item(0).textContent = h + "", i.item(1).textContent = qsscore/100 + " x 100", i.item(2).textContent = hmscore, i.item(3).textContent = "₮ " + o + " x 10", i.item(4).textContent = a + " x 25", i.item(5).textContent = r + " x 50", i.item(6).textContent = n + " x 100", i.item(7).textContent = c + " x 500", h += 500 * c + 100 * n + 50 * r + 25 * a + 10 * o + hmscore + qsscore, i.item(8).textContent = h + "", e < h ? (s.textContent = "NEW HIGH SCORE", this.storage.score = h) : s.textContent = "SCORE", this.storage.token += o, this.store(), this.active = !0, this.body.className = "end"
+                i.item(0).textContent = h + "", i.item(1).textContent = qsscore/100 + " x 100", i.item(2).textContent = hmscore, i.item(3).textContent = o + "", i.item(4).textContent = a + " x 10", i.item(5).textContent = r + " x 50", i.item(6).textContent = n + " x 50", i.item(7).textContent = c + " x 500", h += 500 * c + 50 * n + 50 * r + 10 * a + o + hmscore + qsscore, i.item(8).textContent = h + "", e < h ? (s.textContent = "NEW HIGH SCORE", this.storage.score = h) : s.textContent = "SCORE", this.storage.token += o, this.store(), this.active = !0, this.body.className = "end"
                 ajaxCall(h); /* h = this round's score to be added to the user's cumulative score*/
 
             }
@@ -1293,7 +1311,7 @@ function entertrigger (event) {
                     });
                     correctAnswers = correctAnswers + 1; // NUMBER OF CORRECT ANSWERS THE USER GETS
           qsscore = qsscore + 100;
-                    document.getElementById('answerIsCorrect').addEventListener("click", function(){setTimeout(function(){continueGame=1;}, 500);});
+                    document.getElementById('answerIsCorrect').addEventListener("click", function(){setTimeout(function(){continueGame=1;}, 1500);});
                 }
                 else{
                     Swal.fire({
@@ -1305,13 +1323,13 @@ function entertrigger (event) {
                      /* onClose: this.resumegamewithdelay */
                     });
                     document.getElementById('showCorrectAnswer').innerHTML = "The correct answer is <b>" + String(longCorrectAnswer.toUpperCase()) + "</b>"
-                    document.getElementById('answerIsIncorrect').addEventListener("click", function(){setTimeout(function(){continueGame=1;}, 500);});
+                    document.getElementById('answerIsIncorrect').addEventListener("click", function(){setTimeout(function(){continueGame=1;}, 1500);});
                 }
             }
 
             /* resumegamewithdelay(){
               //
-              setTimeout(this.continueGame, 1000);
+              setTimeout(this.continueGame, 1500);
               }
               /* doesnt work bc setTimeout is weird with this. */
 
@@ -1396,7 +1414,7 @@ function entertrigger (event) {
 
                     if (this.mycoins % <?php echo strval($coinsforQ)?> == 0){
                         /* get a random integer from 0 to length(questionBank)-1 (index of last question) */
-                        var randomQNumber = Math.floor(Math.random()*(Object.keys(questionBank).length));
+                         var randomQNumber = Math.floor(Math.random()*(Object.keys(questionBank).length));
 
 
 
@@ -1447,7 +1465,7 @@ function entertrigger (event) {
                             inputOptions: inputOptions, */
 
                             html: "<p id = 'question'> </p>" +
-                            "<div class='MCanswer'><input type='radio' id='answer_a' name='MC' value='a' checked> <label for='a' id = 'answerA'> </label><br><input type='radio' id='answer_b' name='MC' value='b'> <label for='b' id = 'answerB'> </label><br><input type='radio' id='answer_c' name='MC' value='c'> <label for='b' id = 'answerC'> </label><br><input type='radio' id='answer_d' name='MC' value='d'> <label for='b' id = 'answerD'> </label></div>" +
+                            "<div class='MCanswer'><input type='radio' id='answer_a' name='MC' value='a' checked> <label for='a' id = 'answerA'> </label><br><input type='radio' id='answer_b' name='MC' value='b'> <label for='b' id = 'answerB'> </label><br><input type='radio' id='answer_c' name='MC' value='c'> <label for='b' id = 'answerC'> </label><br><input type='radio' id='answer_d' name='MC' value='d'> <label for='b' id = 'answerD'> </label></div><br>" +
                             "<button type='submit' class ='decorateButton' id='checkanswer' onclick='swal.close()' style = 'background-color: #4CAF50;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;'>SUBMIT</button>",
                             /* inputValidator: (value) => {
                               if (!value) {
