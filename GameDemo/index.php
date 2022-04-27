@@ -1311,7 +1311,7 @@ function entertrigger (event) {
                     });
                     correctAnswers = correctAnswers + 1; // NUMBER OF CORRECT ANSWERS THE USER GETS
           qsscore = qsscore + 100;
-                    document.getElementById('answerIsCorrect').addEventListener("click", function(){setTimeout(function(){continueGame=1;}, 1500);});
+                    document.getElementById('answerIsCorrect').addEventListener("click", function(){setTimeout(function(){continueGame=1;}, 1000);});
                 }
                 else{
                     Swal.fire({
@@ -1323,13 +1323,13 @@ function entertrigger (event) {
                      /* onClose: this.resumegamewithdelay */
                     });
                     document.getElementById('showCorrectAnswer').innerHTML = "The correct answer is <b>" + String(longCorrectAnswer.toUpperCase()) + "</b>"
-                    document.getElementById('answerIsIncorrect').addEventListener("click", function(){setTimeout(function(){continueGame=1;}, 1500);});
+                    document.getElementById('answerIsIncorrect').addEventListener("click", function(){setTimeout(function(){continueGame=1;}, 1000);});
                 }
             }
 
             /* resumegamewithdelay(){
               //
-              setTimeout(this.continueGame, 1500);
+              setTimeout(this.continueGame, 1000);
               }
               /* doesnt work bc setTimeout is weird with this. */
 
