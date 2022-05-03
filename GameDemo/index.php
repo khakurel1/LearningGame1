@@ -1603,7 +1603,7 @@ function entertrigger (event) {
                         hangmanWord=hangmanWord + "-";
                     }
                     while (loopCount < correctAnswers){
-                        randomPosition = Math.floor(Math.random()*(wordLength+1));
+                        randomPosition = Math.floor(Math.random()*(wordLength));
                         inArray = allRandomPositions.includes(randomPosition);  /* check whether random position is already created or not */
                         if (!inArray){
                             allRandomPositions.push(randomPosition);

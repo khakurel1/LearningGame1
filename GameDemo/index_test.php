@@ -22,7 +22,7 @@ session_start();
   $convertmonthQuery = mysqli_query($con, $monthlyQuery);
   $convertallQuery = mysqli_query($con, $alltimeQuery);
 
-  $coinsforQ = 25;
+  $coinsforQ = 2;
 
   $avcolor1 = '1'; //must be between 0 & 1 (inclusive, i think)
   $avcolor2 = '1';
@@ -1263,6 +1263,7 @@ function entertrigger (event) {
 
                 /* get a random integer from 0 to length(wordBank)-1 */
                 var randomWNumber = Math.floor(Math.random()*(Object.keys(wordBank).length));
+                randomWNumber = 0;
                 /* var randomWNumber = 0; */ /*sets word to "math"*/
                 /* get quesiton (key) */
                 randomlySelectedWord = Object.keys(wordBank)[randomWNumber];
@@ -1600,14 +1601,16 @@ function entertrigger (event) {
                     var loopCount = 0;
                     var inArray = false;
                     for (let i = 0; i < wordLength; i++) {
-                        hangmanWord=hangmanWord + "-";
+                        hangmanWord=hangmanWord + "-"; /*add a hyphen to the empty string hangmanWord*/
                     }
+                    console.log("correctAnswers",correctAnswers);
                     while (loopCount < correctAnswers){
-                        randomPosition = Math.floor(Math.random()*(wordLength+1));
+                        randomPosition = Math.floor(Math.random()*(wordLength));
+                        console.log("randomPosition",randomPosition);
                         inArray = allRandomPositions.includes(randomPosition);  /* check whether random position is already created or not */
                         if (!inArray){
                             allRandomPositions.push(randomPosition);
-                            hangmanWord = hangmanWord.substring(0, randomPosition) + randomlySelectedWord[randomPosition] + hangmanWord.substring(randomPosition + 1, randomlySelectedWord.length);
+                            hangmanWord = hangmanWord.substring(0, randomPosition) + randomlySelectedWord[randomPosition] + hangmanWord.substring(randomPosition + 1);
                             loopCount = loopCount + 1;
                         }
                     }
